@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="gray_eee">#efefef</color>
+    <color name="black_3c">#3c3c3c</color>
+    <color name="white_ff">#ffffff</color>
+    <color name="activityColor">#f23030</color>
+    <color name="inActivityColor">#5d5f6a</color>
+    <color name="gray_999">#999999</color>
+    <color name="gray_cc">#cccccc</color>
+    <color name="white_alpha40">#40ffffff</color>
+    <color name="gray_dd">#dddddd</color>
+    <color name="gray_de">#dedede</color>
+    <color name="gray_ee">#eeeeee</color>
+    <color name="black_45">#454545</color>
+    <color name="black_66">#666666</color>
+    <color name="black_99">#999999</color>
+    <color name="black_border">#ffe3e5e9</color>
+    <color name="gray_background">#fff0f2f5</color>
+</resources>

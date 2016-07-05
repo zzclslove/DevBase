@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DevBase</string>
+    <string name="search_btn_text">搜索</string>
+    <string name="hot_search">热搜</string>
+    <string name="history_search">历史搜索</string>
+    <string name="search_clear_btn">清空历史搜索</string>
+    <string name="findings_slog">抢购中，先下单先得哦</string>
+</resources>

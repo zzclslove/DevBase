@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:background="@color/white_ff"
+        android:id="@+id/page_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+        <include layout="@layout/page_header" />
+    </LinearLayout>
+    <View
+        android:id="@+id/page_line"
+        android:layout_below="@id/page_header_layout"
+        android:background="@color/black_border"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp" />
+    <RelativeLayout
+
+        android:id="@+id/category_tab_container"
+        android:layout_below="@id/page_line"
+        android:layout_width="match_parent"
+        android:layout_height="32dp">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/category_sliding_tabs"
+            style="@style/MyCustomCategoryTabLayout"
+            app:tabMode="scrollable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:layout_below="@id/category_tab_container"
+        android:id="@+id/page_line2"
+        android:background="@color/black_border"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp" />
+    <android.support.v4.view.ViewPager
+        android:layout_below="@id/page_line2"
+        android:id="@+id/category_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:background="@color/gray_eee" />
+</RelativeLayout>

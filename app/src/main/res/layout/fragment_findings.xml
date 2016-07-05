@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:uview="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/page_header_container"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.devapp.base.MyImageView
+            android:layout_marginTop="2dp"
+            uview:foreColor="0.3"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/page_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/discovery"
+                android:layout_width="match_parent"
+                android:layout_height="28dp" />
+        </LinearLayout>
+    </RelativeLayout>
+    <View
+        android:background="@color/black_border"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp" />
+    <LinearLayout
+        android:background="@color/gray_eee"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="@color/black_3c"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:text="@string/findings_slog"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp" />
+        <LinearLayout
+            android:paddingRight="10dp"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="32dp">
+            <TextView
+                android:gravity="center_vertical"
+                android:paddingRight="5dp"
+                android:text="距结束"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:textStyle="bold"
+                android:background="@drawable/countdown_textview_bkb"
+                android:textColor="@color/white_ff"
+                android:id="@+id/tv_hour_left"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:gravity="center_vertical"
+                android:textColor="@color/black_3c"
+                android:textStyle="bold"
+                android:text=":"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:background="@drawable/countdown_textview_bkb"
+                android:textColor="@color/white_ff"
+                android:id="@+id/tv_miniute_left"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:gravity="center_vertical"
+                android:textColor="@color/black_3c"
+                android:textStyle="bold"
+                android:text=":"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:background="@drawable/countdown_textview_bkb"
+                android:textColor="@color/white_ff"
+                android:id="@+id/tv_second_left"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:background="@color/black_border"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/finding_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cart_item_card"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+    <View
+        android:background="@color/black_border"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+    <LinearLayout
+        android:background="@color/white_ff"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:checked="true"
+            style="@style/CustomCheckBox"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/cart_item_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/cart_item_pic"
+                fresco:placeholderImage="@drawable/ic_default"
+                android:scaleType="centerCrop"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/cart_item_edit"
+                android:layout_toRightOf="@id/cart_item_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/car_item_num_edit_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageButton
+                        android:layout_alignParentLeft="true"
+                        android:id="@+id/cart_item_reduce"
+                        android:background="@drawable/reduce_button"
+                        android:layout_width="37dp"
+                        android:layout_height="30dp" />
+                    <TextView
+                        android:layout_toRightOf="@id/cart_item_reduce"
+                        android:textColor="@color/black_3c"
+                        android:gravity="center"
+                        android:id="@+id/cart_item_num"
+                        android:background="@drawable/text_edit"
+                        android:layout_width="52dp"
+                        android:layout_height="30dp"
+                        android:singleLine="true"
+                        android:text="1"
+                        android:maxLength="4" />
+                    <ImageButton
+                        android:layout_toRightOf="@id/cart_item_num"
+                        android:id="@+id/cart_item_add"
+                        android:background="@drawable/add_button"
+                        android:layout_width="37dp"
+                        android:layout_height="30dp" />
+                </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/cart_item_prop_edit"
+                    android:layout_below="@id/car_item_num_edit_container"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/cart_item_prop"
+                        android:paddingTop="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_66"
+                        android:ellipsize="end"
+                        android:textSize="14sp" />
+                    <ImageView
+                        android:src="@mipmap/arr_down"
+                        android:layout_width="22dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/delete_btn"
+                android:layout_alignParentRight="true"
+                android:background="@color/activityColor"
+                android:layout_width="45dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:textColor="@color/white_ff"
+                    android:gravity="center"
+                    android:text="删除"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+    <View
+        android:background="@color/black_border"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+</LinearLayout>

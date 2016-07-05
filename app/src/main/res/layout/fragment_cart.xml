@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/gray_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/page_header_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:background="@color/white_ff"
+            android:id="@+id/page_header_layout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+            <include layout="@layout/page_header" />
+            <TextView
+                android:textColor="@color/black_3c"
+                android:id="@+id/cart_edit"
+                android:text="编辑"
+                android:layout_alignParentRight="true"
+                android:textSize="18sp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <View
+        android:id="@+id/cart_head_spacer"
+        android:layout_below="@id/page_header_container"
+        android:background="@color/black_border"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/cart_head_spacer"
+        android:id="@+id/cart_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
