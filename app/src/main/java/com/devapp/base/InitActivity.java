@@ -101,7 +101,6 @@ public class InitActivity extends Activity {
         productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "买就送一袋捏碎面，任性就是这样。", new BigDecimal("330.45"), new BigDecimal("0.89"), 100, 20, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
         productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "买就送一袋捏碎面，任性就是这样。", new BigDecimal("124.00"), new BigDecimal("0.89"), 100, 12, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
         productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "买就送一袋捏碎面，任性就是这样。", new BigDecimal("136.88"), new BigDecimal("0.89"), 100, 10, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "买就送一袋捏碎面，任性就是这样。", new BigDecimal("875.12"), new BigDecimal("0.89"), 100, 12, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
         findingProductList.put("productList", productList);
         findingProductList.put("endTime", "2016-06-18 08:14:47");
         token.setFindingProductList(findingProductList);
