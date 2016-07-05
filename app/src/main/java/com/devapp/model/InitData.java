@@ -8,6 +8,7 @@ import java.util.Map;
  */
 public class InitData {
 
+    private String httpRootUrl;
     private List<Topic> topicList;
     private RecommendProducts recommendProducts;
     private List<Category> categoryList;
@@ -52,5 +53,13 @@ public class InitData {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public String getHttpRootUrl() {
+        return httpRootUrl;
+    }
+
+    public void setHttpRootUrl(String httpRootUrl) {
+        this.httpRootUrl = httpRootUrl;
     }
 }

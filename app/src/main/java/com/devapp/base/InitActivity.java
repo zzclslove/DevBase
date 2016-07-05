@@ -2,9 +2,11 @@ package com.devapp.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.WindowManager;
 
 import com.devapp.R;
@@ -39,7 +41,7 @@ public class InitActivity extends Activity {
         progressDialog.setMessage("正在加载中...");
         progressDialog.show();
 
-        token.setRootUrl("http://zhouzhiren.name/");
+        token.setRootUrl("http://www.zhouzhiren.name/");
 
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         Point autoSize = new Point();
@@ -116,7 +118,27 @@ public class InitActivity extends Activity {
                 }
             }
             @Override
-            public void onError(Throwable ex, boolean isOnCallback) { }
+            public void onError(Throwable ex, boolean isOnCallback) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(self);
+                builder.setMessage("应用加载失败，是否重新加载？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() { //设置确定按钮
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss(); //关闭dialog
+                        Intent i = new Intent(self, InitActivity.class);
+                        startActivity(i);
+                        self.finish();
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() { //设置取消按钮
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        self.finish();
+                    }
+                });
+                builder.create().show();
+            }
             @Override
             public void onCancelled(CancelledException cex) { }
             @Override

@@ -1,5 +1,6 @@
 package com.devapp.category;
 
+import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,12 +10,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.devapp.R;
+import com.devapp.base.Token;
 import com.devapp.model.Category;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
 public class CategoryItemAdapter extends RecyclerView.Adapter{
+
+    private Token token;
 
     public interface OnRecyclerViewListener {
         void onItemClick(int position);
@@ -29,8 +33,9 @@ public class CategoryItemAdapter extends RecyclerView.Adapter{
 
     private List<Category> list;
 
-    public CategoryItemAdapter(List<Category> list) {
+    public CategoryItemAdapter(final Context context, List<Category> list) {
         this.list = list;
+        token = (Token) context.getApplicationContext();
     }
 
     @Override
@@ -47,7 +52,7 @@ public class CategoryItemAdapter extends RecyclerView.Adapter{
         holder.position = i;
         Category category = list.get(i);
         holder.title.setText(category.getCat_name());
-        Uri uri = Uri.parse(category.getCategory_img());
+        Uri uri = Uri.parse(token.getRootUrl() + category.getCategory_img());
         holder.image.setImageURI(uri);
     }
 

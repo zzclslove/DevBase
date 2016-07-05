@@ -40,7 +40,7 @@ public class CategoryPageContentFragment extends Fragment {
         RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_category_itemlist, container, false);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 4);
         view.setLayoutManager(layoutManager);
-        CategoryItemAdapter adapter = new CategoryItemAdapter(categoryList);
+        CategoryItemAdapter adapter = new CategoryItemAdapter(getContext(), categoryList);
         adapter.setOnRecyclerViewListener(new CategoryItemAdapter.OnRecyclerViewListener() {
             @Override
             public void onItemClick(int position) {

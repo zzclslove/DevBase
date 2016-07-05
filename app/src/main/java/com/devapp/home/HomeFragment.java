@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
         HashMap<String,String> url_maps = new HashMap<String, String>();
         List<Topic> topicList = token.getInitData().getTopicList();
         for (Topic topic:topicList) {
-            url_maps.put(topic.getTitle(),topic.getTopic_img());
+            url_maps.put(topic.getTitle(),token.getRootUrl() + topic.getTopic_img());
         }
         int i = 0;
         for(String name : url_maps.keySet()){
