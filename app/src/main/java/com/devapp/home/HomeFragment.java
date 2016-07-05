@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
         RelativeLayout.LayoutParams paramsSlider = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, heightSlider);
         sliderLayout.setLayoutParams(paramsSlider);
         HashMap<String,String> url_maps = new HashMap<String, String>();
-        List<Topic> topicList = token.getTopicList();
+        List<Topic> topicList = token.getInitData().getTopicList();
         for (Topic topic:topicList) {
             url_maps.put(topic.getTitle(),topic.getTopic_img());
         }

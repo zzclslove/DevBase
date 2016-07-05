@@ -10,18 +10,13 @@ import android.view.WindowManager;
 import com.devapp.R;
 import com.devapp.model.Cart;
 import com.devapp.model.CartProduct;
-import com.devapp.model.Category;
+import com.devapp.model.InitData;
 import com.devapp.model.Product;
 import com.devapp.model.ResultData;
-import com.devapp.model.Topic;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
-
-import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +35,10 @@ public class InitActivity extends Activity {
         token = (Token)getApplication();
         self = this;
 
+        CustomProgressDialog progressDialog = CustomProgressDialog.createDialog(this);
+        progressDialog.setMessage("正在加载中...");
+        progressDialog.show();
+
         token.setRootUrl("http://zhouzhiren.name/");
 
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
@@ -50,47 +49,8 @@ public class InitActivity extends Activity {
 
         token.setProductImageScale(1);  //设置产品图片宽高比
 
-        RequestParams paramsCategory = new RequestParams(token.getRootUrl() + "api/category.php");
-        paramsCategory.addQueryStringParameter("action", "get_all_category");
-        x.http().get(paramsCategory, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Gson gson = new Gson();
-                ResultData resultData = gson.fromJson(result, ResultData.class);
-                if(resultData.isResult()){
-                    Type type = new TypeToken<ArrayList<Category>>(){}.getType();
-                    List<Category> categoryList = gson.fromJson(resultData.getData(), type);
-                    token.setCategoryList(categoryList);
-                }
-            }
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) { }
-            @Override
-            public void onCancelled(CancelledException cex) { }
-            @Override
-            public void onFinished() { }
-        });
-
-        RequestParams paramsTopic = new RequestParams(token.getRootUrl() + "api/index.php");
-        paramsTopic.addQueryStringParameter("action", "get_topic_list");
-        x.http().get(paramsTopic, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Gson gson = new Gson();
-                ResultData resultData = gson.fromJson(result, ResultData.class);
-                if(resultData.isResult()){
-                    Type type = new TypeToken<ArrayList<Topic>>(){}.getType();
-                    List<Topic> topicList = gson.fromJson(resultData.getData(), type);
-                    token.setTopicList(topicList);
-                }
-            }
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) { }
-            @Override
-            public void onCancelled(CancelledException cex) { }
-            @Override
-            public void onFinished() { }
-        });
+        final InitData initData = new InitData();
+        token.setInitData(initData);
 
         Map findingProductList = new HashMap<>();
         List<Product> productList = new ArrayList<>();
@@ -102,7 +62,7 @@ public class InitActivity extends Activity {
         productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "买就送一袋捏碎面，任性就是这样。", new BigDecimal("124.00"), new BigDecimal("0.89"), 100, 12, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
         findingProductList.put("productList", productList);
         findingProductList.put("endTime", "2016-06-18 08:14:47");
-        token.setFindingProductList(findingProductList);
+        token.getInitData().setFindingProductList(findingProductList);
 
         Cart cart = new Cart();
         List<CartProduct> cartProductList = new ArrayList<>();
@@ -135,11 +95,34 @@ public class InitActivity extends Activity {
         cartProductList.add(cartProduct2);
 
         cart.setCartProducts(cartProductList);
-        token.setCart(cart);
+        token.getInitData().setCart(cart);
 
-        Intent i = new Intent(self, MainActivity.class);
-        startActivity(i);
-        self.finish();
+        RequestParams paramsCategory = new RequestParams(token.getRootUrl() + "api/index.php");
+        paramsCategory.addQueryStringParameter("action", "get_init_data");
+        x.http().get(paramsCategory, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Gson gson = new Gson();
+                ResultData resultData = gson.fromJson(result, ResultData.class);
+                if(resultData.isResult()){
+                    InitData initDataRes = gson.fromJson(resultData.getData(), InitData.class);
+                    token.getInitData().setCategoryList(initDataRes.getCategoryList());
+                    token.getInitData().setRecommendProducts(initDataRes.getRecommendProducts());
+                    token.getInitData().setTopicList(initDataRes.getTopicList());
+
+                    Intent i = new Intent(self, MainActivity.class);
+                    startActivity(i);
+                    self.finish();
+                }
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) { }
+            @Override
+            public void onCancelled(CancelledException cex) { }
+            @Override
+            public void onFinished() { }
+        });
+
     }
 
 }

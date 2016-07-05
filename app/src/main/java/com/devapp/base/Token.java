@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.devapp.model.Cart;
 import com.devapp.model.Category;
+import com.devapp.model.InitData;
+import com.devapp.model.Product;
 import com.devapp.model.Topic;
 import org.xutils.x;
 import java.util.List;
@@ -23,10 +25,7 @@ public class Token extends Application {
     private int windowWidth;
     private int windowHeight;
     private double productImageScale;   //产品相关图片宽高比
-    private List<Category> categoryList;
-    private List<Topic> topicList;
-    private Map findingProductList;
-    private Cart cart;
+    private InitData initData;
 
     public int getWindowWidth() {
         return windowWidth;
@@ -52,14 +51,6 @@ public class Token extends Application {
         this.productImageScale = productImageScale;
     }
 
-    public List<Category> getCategoryList() {
-        return categoryList;
-    }
-
-    public void setCategoryList(List<Category> categoryList) {
-        this.categoryList = categoryList;
-    }
-
     public String getRootUrl() {
         return rootUrl;
     }
@@ -68,27 +59,11 @@ public class Token extends Application {
         this.rootUrl = rootUrl;
     }
 
-    public List<Topic> getTopicList() {
-        return topicList;
+    public InitData getInitData() {
+        return initData;
     }
 
-    public void setTopicList(List<Topic> topicList) {
-        this.topicList = topicList;
-    }
-
-    public Map getFindingProductList() {
-        return findingProductList;
-    }
-
-    public void setFindingProductList(Map findingProductList) {
-        this.findingProductList = findingProductList;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setInitData(InitData initData) {
+        this.initData = initData;
     }
 }

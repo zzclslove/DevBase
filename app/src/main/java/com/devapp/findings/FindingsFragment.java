@@ -48,7 +48,7 @@ public class FindingsFragment extends Fragment {
         tvMiniuteLeft = (TextView) view.findViewById(R.id.tv_miniute_left);
         tvSecondLeft = (TextView) view.findViewById(R.id.tv_second_left);
 
-        String endTimeStr = (String) token.getFindingProductList().get("endTime");
+        String endTimeStr = (String) token.getInitData().getFindingProductList().get("endTime");
         Calendar c = Calendar.getInstance();
         try {
             c.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endTimeStr));
@@ -64,7 +64,7 @@ public class FindingsFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.finding_list);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
-        FindingsItemAdapter findingsItemAdapter = new FindingsItemAdapter(getActivity().getApplicationContext(), (List < Product >) token.getFindingProductList().get("productList"));
+        FindingsItemAdapter findingsItemAdapter = new FindingsItemAdapter(getActivity().getApplicationContext(), (List < Product >) token.getInitData().getFindingProductList().get("productList"));
         findingsItemAdapter.setOnRecyclerViewListener(new FindingsItemAdapter.OnRecyclerViewListener() {
             @Override
             public void onItemClick(int position) {

@@ -40,7 +40,7 @@ public class CartFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        final CartItemEditAdapter cartItemEditAdapter = new CartItemEditAdapter(getActivity().getApplicationContext(), token.getCart());
+        final CartItemEditAdapter cartItemEditAdapter = new CartItemEditAdapter(getActivity().getApplicationContext(), token.getInitData().getCart());
 
         final CartItemAdapter.OnRecyclerViewListener onRecyclerViewListener = new CartItemAdapter.OnRecyclerViewListener() {
             @Override
@@ -63,7 +63,7 @@ public class CartFragment extends Fragment {
                 int num = Integer.parseInt(tvNum.getText().toString());
                 tvNum.setText((num + 1) + "");
                 v.itemView.findViewById(R.id.cart_item_reduce).setEnabled(true);
-                token.getCart().getCartProducts().get(position).setNum(num + 1);
+                token.getInitData().getCart().getCartProducts().get(position).setNum(num + 1);
             }
             @Override
             public void onButtonReduceClick(int position, RecyclerView.ViewHolder v) {
@@ -71,7 +71,7 @@ public class CartFragment extends Fragment {
                 int num = Integer.parseInt(tvNum.getText().toString());
                 if(num > 1){
                     tvNum.setText((num - 1) + "");
-                    token.getCart().getCartProducts().get(position).setNum(num - 1);
+                    token.getInitData().getCart().getCartProducts().get(position).setNum(num - 1);
                 }else{
                     v.itemView.findViewById(R.id.cart_item_reduce).setEnabled(false);
                 }
@@ -97,16 +97,16 @@ public class CartFragment extends Fragment {
             public void onSelectorChanged(int position, View v) {}
             @Override
             public void onDeleteBtnClick(int position) {
-                token.getCart().getCartProducts().remove(position);
+                token.getInitData().getCart().getCartProducts().remove(position);
                 cartItemEditAdapter.notifyItemRemoved(position);
-                cartItemEditAdapter.notifyItemRangeChanged(0, token.getCart().getCartProducts().size());
+                cartItemEditAdapter.notifyItemRangeChanged(0, token.getInitData().getCart().getCartProducts().size());
             }
             @Override
             public void onPropsEditBtnClick(int position, View v) {}
         };
 
 
-        CartItemAdapter cartItemAdapter = new CartItemAdapter(getActivity().getApplicationContext(), token.getCart());
+        CartItemAdapter cartItemAdapter = new CartItemAdapter(getActivity().getApplicationContext(), token.getInitData().getCart());
         cartItemAdapter.setOnRecyclerViewListener(onRecyclerViewListener);
         recyclerView.setAdapter(cartItemAdapter);
 
@@ -120,7 +120,7 @@ public class CartFragment extends Fragment {
                     recyclerView.setAdapter(cartItemEditAdapter);
                 }else{
                     cartEditBtn.setText("编辑");
-                    CartItemAdapter cartItemAdapter = new CartItemAdapter(getActivity().getApplicationContext(), token.getCart());
+                    CartItemAdapter cartItemAdapter = new CartItemAdapter(getActivity().getApplicationContext(), token.getInitData().getCart());
                     cartItemAdapter.setOnRecyclerViewListener(onRecyclerViewListener);
                     recyclerView.setAdapter(cartItemAdapter);
                 }

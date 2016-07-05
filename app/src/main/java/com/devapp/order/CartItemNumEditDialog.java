@@ -81,7 +81,7 @@ public class CartItemNumEditDialog extends Dialog {
                 public void onClick(View v) {
                     if(editText.getText().length() > 0){
                         tvNum.setText(editText.getText().toString());
-                        token.getCart().getCartProducts().get(position).setNum(Integer.parseInt(editText.getText().toString()));
+                        token.getInitData().getCart().getCartProducts().get(position).setNum(Integer.parseInt(editText.getText().toString()));
                     }
                     positiveButtonClickListener.onClick(dialog, DialogInterface.BUTTON_POSITIVE);
                 }

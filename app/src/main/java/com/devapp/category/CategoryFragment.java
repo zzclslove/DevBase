@@ -39,7 +39,7 @@ public class CategoryFragment extends Fragment {
 
         categoryTabLayout = (TabLayout) view.findViewById(R.id.category_sliding_tabs);
         categoryViewPager = (ViewPager) view.findViewById(R.id.category_viewpager);
-        categoryPagerAdapter = new CategoryPagerAdapter(getChildFragmentManager(), token.getCategoryList());
+        categoryPagerAdapter = new CategoryPagerAdapter(getChildFragmentManager(), token.getInitData().getCategoryList());
         categoryViewPager.setAdapter(categoryPagerAdapter);
         categoryTabLayout.setupWithViewPager(categoryViewPager);
 

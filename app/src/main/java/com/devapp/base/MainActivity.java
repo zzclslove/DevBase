@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(userFragment);
 
         mainPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(), fragmentList));
-        mainPager.setCurrentItem(3);//设置当前显示标签页为第一页
+        mainPager.setCurrentItem(0);//设置当前显示标签页为第一页
         mainPager.addOnPageChangeListener (new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int select) {
