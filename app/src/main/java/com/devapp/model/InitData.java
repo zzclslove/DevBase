@@ -8,10 +8,13 @@ import java.util.Map;
  */
 public class InitData {
 
+    private int productImageHeight;
+    private int productImageWidth;
     private String httpRootUrl;
     private List<Topic> topicList;
     private RecommendProducts recommendProducts;
     private List<Category> categoryList;
+    private List<Product> finddingProductList;
     private Map findingProductList;
     private Cart cart;
 
@@ -61,5 +64,29 @@ public class InitData {
 
     public void setHttpRootUrl(String httpRootUrl) {
         this.httpRootUrl = httpRootUrl;
+    }
+
+    public int getProductImageWidth() {
+        return productImageWidth;
+    }
+
+    public void setProductImageWidth(int productImageWidth) {
+        this.productImageWidth = productImageWidth;
+    }
+
+    public int getProductImageHeight() {
+        return productImageHeight;
+    }
+
+    public void setProductImageHeight(int productImageHeight) {
+        this.productImageHeight = productImageHeight;
+    }
+
+    public List<Product> getFinddingProductList() {
+        return finddingProductList;
+    }
+
+    public void setFinddingProductList(List<Product> finddingProductList) {
+        this.finddingProductList = finddingProductList;
     }
 }

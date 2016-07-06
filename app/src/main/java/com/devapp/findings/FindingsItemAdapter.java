@@ -53,25 +53,26 @@ public class FindingsItemAdapter extends RecyclerView.Adapter {
         FindingItemViewHolder holder = (FindingItemViewHolder) viewHolder;
         holder.position = i;
         Product product = list.get(i);
-        holder.title.setText(product.getTitle());
-        holder.description.setText(product.getDescription());
-        holder.stock.setText("已抢 " + product.getSales() + "件，还剩 " + (product.getStock() - product.getSales()) + "件");
+        holder.title.setText(product.getName());
+        holder.description.setText(product.getBrief());
+        //holder.stock.setText("已抢 " + product.getSales() + "件，还剩 " + (product.getStock() - product.getSales()) + "件");
         holder.image.setAspectRatio((float) token.getProductImageScale());
-        int intPrice = product.getPrice().setScale(2).intValue();
-        int decimalPrice = Integer.parseInt(new java.text.DecimalFormat("0").format(((product.getPrice().setScale(2).doubleValue() - intPrice) * 100)));
+        BigDecimal price = new BigDecimal(product.getShop_price());
+        int intPrice = price.setScale(2).intValue();
+        int decimalPrice = Integer.parseInt(new java.text.DecimalFormat("0").format(((price.setScale(2).doubleValue() - intPrice) * 100)));
         if(decimalPrice != 0){
             holder.price.setText(intPrice + ".");
             holder.decimalPrice.setText(decimalPrice + "");
         }else{
             holder.price.setText(intPrice + "");
         }
-        holder.prePrice.setText("￥" + product.getPrice().divide(product.getDiscount(), 2, BigDecimal.ROUND_HALF_EVEN).toString());
+        //holder.prePrice.setText("￥" + product.getPrice().divide(product.getDiscount(), 2, BigDecimal.ROUND_HALF_EVEN).toString());
         holder.progressBar.setMax(100);
-        if(product.getSales() < product.getStock()){
-            holder.progressBar.setProgress(product.getSales() * 100 / product.getStock());
-        }else{
+//        if(product.getSales() < product.getStock()){
+//            holder.progressBar.setProgress(product.getSales() * 100 / product.getStock());
+//        }else{
             holder.progressBar.setProgress(100);
-        }
+//        }
         Uri uri = Uri.parse(product.getThumb());
         holder.image.setImageURI(uri);
     }

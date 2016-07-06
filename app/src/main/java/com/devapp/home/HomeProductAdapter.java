@@ -16,6 +16,7 @@ import com.devapp.model.Product;
 import com.devapp.util.DensityUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class HomeProductAdapter extends RecyclerView.Adapter {
@@ -52,17 +53,17 @@ public class HomeProductAdapter extends RecyclerView.Adapter {
         ProductViewHolder holder = (ProductViewHolder) viewHolder;
         holder.position = i;
         Product product = list.get(i);
-        holder.title.setText(product.getTitle());
-        int intPrice = product.getPrice().setScale(2).intValue();
-        int decimalPrice = Integer.parseInt(new java.text.DecimalFormat("0").format(((product.getPrice().setScale(2).doubleValue() - intPrice) * 100)));
+        holder.title.setText(product.getName());
+        BigDecimal price = new BigDecimal(product.getShop_price());
+        int intPrice = price.setScale(2).intValue();
+        int decimalPrice = Integer.parseInt(new java.text.DecimalFormat("0").format(((price.setScale(2).doubleValue() - intPrice) * 100)));
         if(decimalPrice != 0){
             holder.price.setText(intPrice + ".");
             holder.decimalPrice.setText(decimalPrice + "");
         }else{
             holder.price.setText(intPrice + "");
         }
-        holder.sales.setText(product.getSales() + "人购买");
-        Uri uri = Uri.parse(product.getThumb());
+        Uri uri = Uri.parse(token.getRootUrl() + product.getThumb());
         holder.image.setImageURI(uri);
     }
 

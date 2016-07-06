@@ -87,25 +87,16 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 
         //获取三个tab的数据
         List<List<Product>> homeProductLists = new ArrayList<>();
-        List<Product> productList = new ArrayList<>();
-        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "", new BigDecimal("120.00"), new BigDecimal("0.89"), 100,  12, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "", new BigDecimal("960"), new BigDecimal("0.89"), 100, 15, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "", new BigDecimal("1002.50"), new BigDecimal("0.89"), 100, 300, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "", new BigDecimal("50.0"), new BigDecimal("0.89"), 100, 1200, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "", new BigDecimal("5.50"), new BigDecimal("0.89"), 100, 20, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "", new BigDecimal("14.50"), new BigDecimal("0.89"), 100, 12, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "", new BigDecimal("13.50"), new BigDecimal("0.89"), 100, 10, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "", new BigDecimal("1243.50"), new BigDecimal("0.89"), 100, 12, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-        homeProductLists.add(productList);
-        homeProductLists.add(productList);
-        homeProductLists.add(productList);
+        homeProductLists.add(token.getInitData().getRecommendProducts().getBestProductList());
+        homeProductLists.add(token.getInitData().getRecommendProducts().getHotProductList());
+        homeProductLists.add(token.getInitData().getRecommendProducts().getNewProductList());
 
         pagerAdapter = new HomePagerAdapter(this.getChildFragmentManager(), homeProductLists);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         viewPager.setAdapter(pagerAdapter);
 
         int productListItemHeight = (int) ((token.getWindowWidth() - DensityUtil.dip2px(getContext(), 50)) / (2 * token.getProductImageScale())) + DensityUtil.dip2px(getContext(), 73);
-        int height = productList.size() / 2 * productListItemHeight;
+        int height = token.getInitData().getRecommendProducts().getBestProductList().size() / 2 * productListItemHeight;
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height);
         viewPager.setLayoutParams(params);
 

@@ -1,117 +1,80 @@
 package com.devapp.model;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.Serializable;
-import java.lang.reflect.Type;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Product implements Serializable {
 
-    private String title;
-    private String description;
-    private BigDecimal price;
-    private BigDecimal discount;
-    private int stock;
-    private int sales;
+    private int id;
+    private String name;
+    private String market_price;
+    private String shop_price;
+    private String promote_price;
     private String thumb;
-    private List<ProductProp> props;
-    private String propsStr;
+    private List<String> goods_img;
+    private String brief;
 
-    public Product(String title, String description, BigDecimal price, BigDecimal discount, int stock, int sales ,String thumb)
-    {
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.discount = discount;
-        this.stock = stock;
-        this.sales = sales;
-        this.thumb = thumb;
+    public int getId() {
+        return id;
     }
 
-    public Product(String title, BigDecimal price, BigDecimal discount, String thumb){
-        this.title = title;
-        this.price = price;
-        this.discount = discount;
-        this.thumb = thumb;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getThumb() {
         return thumb;
     }
 
-    public void setThumb(String mainImageUrl) {
-        this.thumb = mainImageUrl;
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
     }
 
-    public int getSales() {
-        return sales;
+    public List<String> getGoods_img() {
+        return goods_img;
     }
 
-    public void setSales(int sales) {
-        this.sales = sales;
+    public void setGoods_img(List<String> goods_img) {
+        this.goods_img = goods_img;
     }
 
-    public BigDecimal getDiscount() {
-        return discount;
+    public String getBrief() {
+        return brief;
     }
 
-    public void setDiscount(BigDecimal discount) {
-        this.discount = discount;
+    public void setBrief(String brief) {
+        this.brief = brief;
     }
 
-    public int getStock() {
-        return stock;
+    public String getPromote_price() {
+        return promote_price;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setPromote_price(String promote_price) {
+        this.promote_price = promote_price;
     }
 
-    public String getDescription() {
-        return description;
+    public String getMarket_price() {
+        return market_price;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setMarket_price(String market_price) {
+        this.market_price = market_price;
     }
 
-    public List<ProductProp> getProps() {
-        Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<ProductProp>>(){}.getType();
-        List<ProductProp> propsList = gson.fromJson(propsStr, type);
-        return propsList;
+    public String getShop_price() {
+        return shop_price;
     }
 
-    public void setProps(List<ProductProp> props) {
-        this.props = props;
-    }
-
-    public String getPropsStr() {
-        return propsStr;
-    }
-
-    public void setPropsStr(String propsStr) {
-        this.propsStr = propsStr;
+    public void setShop_price(String shop_price) {
+        this.shop_price = shop_price;
     }
 }

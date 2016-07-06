@@ -24,6 +24,8 @@ public class Token extends Application {
 
     private int windowWidth;
     private int windowHeight;
+    private int productImageHeight;
+    private int productImageWidth;
     private double productImageScale;   //产品相关图片宽高比
     private InitData initData;
 
@@ -65,5 +67,21 @@ public class Token extends Application {
 
     public void setInitData(InitData initData) {
         this.initData = initData;
+    }
+
+    public int getProductImageHeight() {
+        return productImageHeight;
+    }
+
+    public void setProductImageHeight(int productImageHeight) {
+        this.productImageHeight = productImageHeight;
+    }
+
+    public int getProductImageWidth() {
+        return productImageWidth;
+    }
+
+    public void setProductImageWidth(int productImageWidth) {
+        this.productImageWidth = productImageWidth;
     }
 }
