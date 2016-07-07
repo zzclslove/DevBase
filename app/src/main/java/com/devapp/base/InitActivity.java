@@ -52,18 +52,6 @@ public class InitActivity extends Activity {
         final InitData initData = new InitData();
         token.setInitData(initData);
 
-        Map findingProductList = new HashMap<>();
-        List<Product> productList = new ArrayList<>();
-//        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "买就送一袋捏碎面，任性就是这样。", new BigDecimal("245.88"), new BigDecimal("0.89"), 100,  12, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-//        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "买就送一袋捏碎面，任性就是这样。", new BigDecimal("125.00"), new BigDecimal("0.89"), 100, 15, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-//        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "买就送一袋捏碎面，任性就是这样。", new BigDecimal("960.12"), new BigDecimal("0.89"), 100, 300, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-//        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "买就送一袋捏碎面，任性就是这样。", new BigDecimal("1250.35"), new BigDecimal("0.89"), 100, 1200, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-//        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "买就送一袋捏碎面，任性就是这样。", new BigDecimal("330.45"), new BigDecimal("0.89"), 100, 20, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-//        productList.add(new Product("澳贝玩具趣味小树 婴幼儿童声光积", "买就送一袋捏碎面，任性就是这样。", new BigDecimal("124.00"), new BigDecimal("0.89"), 100, 12, "http://img14.360buyimg.com/n1/jfs/t2470/269/1812220721/155606/6a768005/567cfb74N1d5efeb7.jpg"));
-        findingProductList.put("productList", productList);
-        findingProductList.put("endTime", "2016-06-18 08:14:47");
-        token.getInitData().setFindingProductList(findingProductList);
-
         Cart cart = new Cart();
         List<CartProduct> cartProductList = new ArrayList<>();
         CartProduct cartProduct = new CartProduct();
@@ -110,6 +98,7 @@ public class InitActivity extends Activity {
                     token.getInitData().setRecommendProducts(initDataRes.getRecommendProducts());
                     token.getInitData().setTopicList(initDataRes.getTopicList());
                     token.setProductImageScale(initDataRes.getProductImageWidth()/initDataRes.getProductImageHeight());
+                    token.getInitData().setFindingProductList(initDataRes.getFindingProductList());
                     Intent i = new Intent(self, MainActivity.class);
                     startActivity(i);
                     self.finish();

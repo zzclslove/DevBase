@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,12 @@ import com.devapp.base.Token;
 import com.devapp.model.Product;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import org.w3c.dom.Text;
+
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class FindingsItemAdapter extends RecyclerView.Adapter {
@@ -50,14 +56,19 @@ public class FindingsItemAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        FindingItemViewHolder holder = (FindingItemViewHolder) viewHolder;
+        final FindingItemViewHolder holder = (FindingItemViewHolder) viewHolder;
         holder.position = i;
         Product product = list.get(i);
         holder.title.setText(product.getName());
-        holder.description.setText(product.getBrief());
-        //holder.stock.setText("已抢 " + product.getSales() + "件，还剩 " + (product.getStock() - product.getSales()) + "件");
+        if(product.getBrief().length() == 0){
+            holder.description.setVisibility(View.GONE);
+        }else{
+            holder.description.setVisibility(View.VISIBLE);
+            holder.description.setText(product.getBrief());
+        }
+        holder.endTime.setText(product.getPromote_end_date());
         holder.image.setAspectRatio((float) token.getProductImageScale());
-        BigDecimal price = new BigDecimal(product.getShop_price());
+        BigDecimal price = new BigDecimal(product.getPromote_price());
         int intPrice = price.setScale(2).intValue();
         int decimalPrice = Integer.parseInt(new java.text.DecimalFormat("0").format(((price.setScale(2).doubleValue() - intPrice) * 100)));
         if(decimalPrice != 0){
@@ -66,15 +77,14 @@ public class FindingsItemAdapter extends RecyclerView.Adapter {
         }else{
             holder.price.setText(intPrice + "");
         }
-        //holder.prePrice.setText("￥" + product.getPrice().divide(product.getDiscount(), 2, BigDecimal.ROUND_HALF_EVEN).toString());
-        holder.progressBar.setMax(100);
-//        if(product.getSales() < product.getStock()){
-//            holder.progressBar.setProgress(product.getSales() * 100 / product.getStock());
-//        }else{
-            holder.progressBar.setProgress(100);
-//        }
-        Uri uri = Uri.parse(product.getThumb());
+        if(product.getMarket_price().length() > 0){
+            holder.prePrice.setText("￥" + product.getMarket_price());
+        }else{
+            holder.prePrice.setText("￥" + product.getShop_price());
+        }
+        Uri uri = Uri.parse(token.getRootUrl() + product.getThumb());
         holder.image.setImageURI(uri);
+
     }
 
     @Override
@@ -87,19 +97,18 @@ public class FindingsItemAdapter extends RecyclerView.Adapter {
         public View rootView;
         public TextView title;
         public TextView description;
-        public TextView stock;
         public SimpleDraweeView image;
         public TextView price;
         public TextView decimalPrice;
         public TextView prePrice;
-        public ProgressBar progressBar;
+        public TextView endTime;
+
         public int position;
 
         public FindingItemViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.findings_item_title);
             description = (TextView) itemView.findViewById(R.id.finding_item_des);
-            stock = (TextView) itemView.findViewById(R.id.finding_item_stock);
             image = (SimpleDraweeView) itemView.findViewById(R.id.findings_item_pic);
             price = (TextView) itemView.findViewById(R.id.finding_item_price_int);
             decimalPrice = (TextView) itemView.findViewById(R.id.finding_item_price_decimal);
@@ -108,7 +117,7 @@ public class FindingsItemAdapter extends RecyclerView.Adapter {
             decimalPrice.setTypeface(typeFace);
             prePrice = (TextView) itemView.findViewById(R.id.finding_item_pre_price);
             prePrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-            progressBar = (ProgressBar) itemView.findViewById(R.id.finding_item_progress);
+            endTime = (TextView) itemView.findViewById(R.id.end_time);
             rootView = itemView.findViewById(R.id.findings_item_root);
             rootView.setOnClickListener(this);
             rootView.setOnLongClickListener(this);

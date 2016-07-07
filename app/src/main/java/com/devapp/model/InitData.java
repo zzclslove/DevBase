@@ -13,9 +13,8 @@ public class InitData {
     private String httpRootUrl;
     private List<Topic> topicList;
     private RecommendProducts recommendProducts;
+    private List<Product> findingProductList;
     private List<Category> categoryList;
-    private List<Product> finddingProductList;
-    private Map findingProductList;
     private Cart cart;
 
     public List<Topic> getTopicList() {
@@ -40,14 +39,6 @@ public class InitData {
 
     public void setCategoryList(List<Category> categoryList) {
         this.categoryList = categoryList;
-    }
-
-    public Map getFindingProductList() {
-        return findingProductList;
-    }
-
-    public void setFindingProductList(Map findingProductList) {
-        this.findingProductList = findingProductList;
     }
 
     public Cart getCart() {
@@ -82,11 +73,11 @@ public class InitData {
         this.productImageHeight = productImageHeight;
     }
 
-    public List<Product> getFinddingProductList() {
-        return finddingProductList;
+    public List<Product> getFindingProductList() {
+        return findingProductList;
     }
 
-    public void setFinddingProductList(List<Product> finddingProductList) {
-        this.finddingProductList = finddingProductList;
+    public void setFindingProductList(List<Product> findingProductList) {
+        this.findingProductList = findingProductList;
     }
 }

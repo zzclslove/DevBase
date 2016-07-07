@@ -1,6 +1,7 @@
 package com.devapp.home;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
@@ -55,6 +56,16 @@ public class HomeProductAdapter extends RecyclerView.Adapter {
         Product product = list.get(i);
         holder.title.setText(product.getName());
         BigDecimal price = new BigDecimal(product.getShop_price());
+        BigDecimal orgPrice = new BigDecimal("0");
+        if(product.getMarket_price().length() > 0){
+            orgPrice = new BigDecimal(product.getMarket_price());
+        }else{
+            if(product.getPromote_price().length() > 0){
+                orgPrice = new BigDecimal(product.getShop_price());
+                price = new BigDecimal(product.getPromote_price());
+            }
+        }
+
         int intPrice = price.setScale(2).intValue();
         int decimalPrice = Integer.parseInt(new java.text.DecimalFormat("0").format(((price.setScale(2).doubleValue() - intPrice) * 100)));
         if(decimalPrice != 0){
@@ -63,6 +74,12 @@ public class HomeProductAdapter extends RecyclerView.Adapter {
         }else{
             holder.price.setText(intPrice + "");
         }
+
+        if(orgPrice.compareTo(BigDecimal.ZERO) != 0){
+            holder.orgPrice.setText("￥" + orgPrice + "");
+            holder.orgPrice.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG);
+        }
+
         Uri uri = Uri.parse(token.getRootUrl() + product.getThumb());
         holder.image.setImageURI(uri);
     }
@@ -78,7 +95,7 @@ public class HomeProductAdapter extends RecyclerView.Adapter {
         public TextView title;
         public TextView price;
         public TextView decimalPrice;
-        public TextView sales;
+        public TextView orgPrice;
         public SimpleDraweeView image;
         public int position;
 
@@ -91,7 +108,7 @@ public class HomeProductAdapter extends RecyclerView.Adapter {
             Typeface typeFace =Typeface.createFromAsset(token.getAssets(),"fonts/medium.ttf");
             price.setTypeface(typeFace);
             decimalPrice.setTypeface(typeFace);
-            sales = (TextView) itemView.findViewById(R.id.sales);
+            orgPrice = (TextView) itemView.findViewById(R.id.org_price);
             int imgHeight = (int) ((token.getWindowWidth() - DensityUtil.dip2px(token, 50)) / (2 * token.getProductImageScale()));
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, imgHeight);
             image.setLayoutParams(layoutParams);

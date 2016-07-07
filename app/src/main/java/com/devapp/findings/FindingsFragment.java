@@ -22,13 +22,7 @@ import java.util.List;
 public class FindingsFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private TextView tvhourLeft;
-    private TextView tvMiniuteLeft;
-    private TextView tvSecondLeft;
     private Token token;
-
-    private long endTimeMillis;
-    private Handler handler;
 
     public static FindingsFragment newInstance(String s) {
         FindingsFragment newFragment = new FindingsFragment();
@@ -42,29 +36,10 @@ public class FindingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_findings, container, false);
         token = (Token) getActivity().getApplicationContext();
-        handler = new Handler();
-
-        tvhourLeft = (TextView) view.findViewById(R.id.tv_hour_left);
-        tvMiniuteLeft = (TextView) view.findViewById(R.id.tv_miniute_left);
-        tvSecondLeft = (TextView) view.findViewById(R.id.tv_second_left);
-
-        String endTimeStr = (String) token.getInitData().getFindingProductList().get("endTime");
-        Calendar c = Calendar.getInstance();
-        try {
-            c.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endTimeStr));
-            endTimeMillis = c.getTimeInMillis();
-            long currentTimeMillisTime = System.currentTimeMillis();
-            if(endTimeMillis - currentTimeMillisTime > 0){
-                handler.postDelayed(runnable, 1000);
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
         recyclerView = (RecyclerView) view.findViewById(R.id.finding_list);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
-        FindingsItemAdapter findingsItemAdapter = new FindingsItemAdapter(getActivity().getApplicationContext(), (List < Product >) token.getInitData().getFindingProductList().get("productList"));
+        FindingsItemAdapter findingsItemAdapter = new FindingsItemAdapter(getActivity().getApplicationContext(), token.getInitData().getFindingProductList());
         findingsItemAdapter.setOnRecyclerViewListener(new FindingsItemAdapter.OnRecyclerViewListener() {
             @Override
             public void onItemClick(int position) {
@@ -81,34 +56,7 @@ public class FindingsFragment extends Fragment {
             }
         });
         recyclerView.setAdapter(findingsItemAdapter);
-
         return view;
-    }
-
-
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            long currentTimeMillisTime = System.currentTimeMillis();
-            long leftTimeMillis = endTimeMillis - currentTimeMillisTime;
-            getLeftStr(leftTimeMillis);
-            if(leftTimeMillis  > 0){
-                handler.postDelayed(this, 1000);
-            }
-        }
-    };
-
-    private void getLeftStr(long leftTime){
-        long hour = leftTime / (3600*1000);
-        long miniute = (leftTime % (3600*1000)) / (60*1000);
-        long second = (leftTime % (60*1000)) / 1000;
-        String miniuteStr = miniute < 10 ? ("0" + miniute) : (miniute + "");
-        String secondStr = second < 10 ? ("0" + second) : (second + "");
-
-
-        tvhourLeft.setText(hour + "");
-        tvMiniuteLeft.setText(miniuteStr);
-        tvSecondLeft.setText(secondStr);
     }
 
 }

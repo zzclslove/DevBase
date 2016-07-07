@@ -13,6 +13,7 @@ public class Product implements Serializable {
     private String thumb;
     private List<String> goods_img;
     private String brief;
+    private String promote_end_date;
 
     public int getId() {
         return id;
@@ -76,5 +77,13 @@ public class Product implements Serializable {
 
     public void setShop_price(String shop_price) {
         this.shop_price = shop_price;
+    }
+
+    public String getPromote_end_date() {
+        return promote_end_date;
+    }
+
+    public void setPromote_end_date(String promote_end_date) {
+        this.promote_end_date = promote_end_date;
     }
 }
