@@ -10,6 +10,7 @@
         android:id="@+id/findings_item_root"
         android:orientation="horizontal"
         android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:background="@color/white_ff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -34,7 +35,7 @@
             android:layout_height="match_parent">
             <TextView
                 android:id="@+id/findings_item_title"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
                 android:textColor="@color/black_3c"
@@ -57,10 +58,13 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:gravity="center_vertical"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
                     android:text="结束日期:"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/end_time"
                     android:paddingLeft="5dp"
                     android:textColor="@color/black_3c"
@@ -69,7 +73,7 @@
             </LinearLayout>
             <RelativeLayout
                 android:paddingRight="12dp"
-                android:paddingTop="15dp"
+                android:paddingTop="10dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -82,6 +86,13 @@
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
+                        <TextView
+                            android:text="特价:"
+                            android:textSize="12sp"
+                            android:paddingRight="5dp"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
                         <TextView
                             android:text="￥"
                             android:textStyle="bold"
@@ -112,7 +123,7 @@
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/finding_item_button"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="3dp"
                     android:paddingLeft="7dp"
                     android:paddingRight="7dp"
                     android:layout_alignParentRight="true"
@@ -120,7 +131,7 @@
                     android:background="@drawable/activity_radius_button"
                     android:layout_gravity="right|center"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp">
+                    android:layout_height="22dp">
                     <TextView
                         android:gravity="center"
                         android:textSize="12sp"
@@ -136,5 +147,5 @@
     <View
         android:background="@drawable/model_spacer"
         android:layout_width="match_parent"
-        android:layout_height="3dp" />
+        android:layout_height="8dp" />
 </LinearLayout>

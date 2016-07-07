@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.devapp"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -34,4 +34,5 @@ dependencies {
     compile 'me.yokeyword:fragmentation:0.6.5'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'org.xutils:xutils:3.3.36'
+    compile 'com.chanven.lib:cptr:1.0.0'
 }
