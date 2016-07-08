@@ -76,7 +76,7 @@ public class FindingsFragment extends Fragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        currentPage = 11;
+                        currentPage = 1;
                         findingProductList.clear();
                         findingProductList.addAll(token.getInitData().getFindingProductList());
                         mAdapter.notifyDataSetChanged();

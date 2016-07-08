@@ -29,6 +29,7 @@ public class InitActivity extends Activity {
 
     private Token token;
     private Activity self;
+    private CustomProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class InitActivity extends Activity {
         token = (Token)getApplication();
         self = this;
 
-        CustomProgressDialog progressDialog = CustomProgressDialog.createDialog(this);
+        progressDialog = CustomProgressDialog.createDialog(this);
         progressDialog.setMessage("正在加载中...");
         progressDialog.show();
 
@@ -134,4 +135,9 @@ public class InitActivity extends Activity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        progressDialog.dismiss();
+        super.onDestroy();
+    }
 }
