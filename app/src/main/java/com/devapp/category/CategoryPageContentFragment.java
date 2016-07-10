@@ -1,5 +1,6 @@
 package com.devapp.category;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,6 +13,7 @@ import com.devapp.R;
 import com.devapp.home.HomeProductAdapter;
 import com.devapp.model.Category;
 import com.devapp.model.Product;
+import com.devapp.product.ProductListActivity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -44,7 +46,11 @@ public class CategoryPageContentFragment extends Fragment {
         adapter.setOnRecyclerViewListener(new CategoryItemAdapter.OnRecyclerViewListener() {
             @Override
             public void onItemClick(int position) {
-
+                Intent i = new Intent(getActivity(), ProductListActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("catId", categoryList.get(position).getCat_id() + "");
+                i.putExtras(bundle);
+                startActivity(i);
             }
             @Override
             public boolean onItemLongClick(int position) {

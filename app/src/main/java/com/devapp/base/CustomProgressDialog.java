@@ -11,13 +11,7 @@ import com.devapp.R;
 
 public class CustomProgressDialog extends Dialog {
 
-    private Context context = null;
     private static CustomProgressDialog customProgressDialog = null;
-
-    public CustomProgressDialog(Context context){
-        super(context);
-        this.context = context;
-    }
 
     public CustomProgressDialog(Context context, int theme) {
         super(context, theme);
