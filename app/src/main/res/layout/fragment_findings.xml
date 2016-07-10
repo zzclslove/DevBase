@@ -46,21 +46,25 @@
             android:text="@string/findings_slog"
             android:layout_width="wrap_content"
             android:layout_height="32dp" />
+
     </LinearLayout>
     <View
         android:background="@color/black_border"
         android:layout_width="match_parent"
         android:layout_height="0.8dp" />
-        <com.chanven.lib.cptr.PtrClassicFrameLayout
-            android:id="@+id/finding_recycler_view_frame"
+    <com.devapp.base.MPtrClassicFrameLayout
+        android:id="@+id/rotate_header_list_view_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        uview:ptr_duration_to_close="200"
+        uview:ptr_duration_to_close_header="1000"
+        uview:ptr_keep_header_when_refresh="true"
+        uview:ptr_pull_to_fresh="false"
+        uview:ptr_ratio_of_header_height_to_refresh="1.2"
+        uview:ptr_resistance="1.7" >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/finding_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#fff" >
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/finding_list"
-                android:background="#000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </android.support.v7.widget.RecyclerView>
-        </com.chanven.lib.cptr.PtrClassicFrameLayout>
+            android:layout_height="match_parent" />
+    </com.devapp.base.MPtrClassicFrameLayout>
 </LinearLayout>

@@ -4,30 +4,45 @@ import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.devapp.R;
 import com.devapp.base.Token;
 import com.devapp.model.Product;
 import com.facebook.drawee.view.SimpleDraweeView;
-
-import org.w3c.dom.Text;
+import com.shizhefei.mvc.IDataAdapter;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.List;
 
-public class FindingsItemAdapter extends RecyclerView.Adapter {
+public class FindingsItemAdapter extends RecyclerView.Adapter implements IDataAdapter<List<Product>> {
 
     private Token token;
+    private List<Product> productList = new ArrayList<>();
+
+    @Override
+    public void notifyDataChanged(List<Product> data, boolean isRefresh) {
+        if (isRefresh) {
+            productList.clear();
+        }
+        productList.addAll(data);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public List<Product> getData() {
+        return productList;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return productList.isEmpty();
+    }
 
     public interface OnRecyclerViewListener {
         void onItemClick(int position);
@@ -41,10 +56,8 @@ public class FindingsItemAdapter extends RecyclerView.Adapter {
         this.onRecyclerViewListener = onRecyclerViewListener;
     }
 
-    private List<Product> list;
-
-    public FindingsItemAdapter(Context context, List<Product> list) {
-        this.list = list;
+    public FindingsItemAdapter(Context context) {
+        super();
         token = (Token) context;
     }
 
@@ -58,7 +71,7 @@ public class FindingsItemAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         final FindingItemViewHolder holder = (FindingItemViewHolder) viewHolder;
         holder.position = i;
-        Product product = list.get(i);
+        Product product = productList.get(i);
         holder.title.setText(product.getName());
         if(product.getBrief().length() == 0){
             holder.description.setVisibility(View.GONE);
@@ -89,7 +102,7 @@ public class FindingsItemAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return productList.size();
     }
 
     class FindingItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener

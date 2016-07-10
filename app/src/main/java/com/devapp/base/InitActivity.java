@@ -13,7 +13,6 @@ import com.devapp.R;
 import com.devapp.model.Cart;
 import com.devapp.model.CartProduct;
 import com.devapp.model.InitData;
-import com.devapp.model.Product;
 import com.devapp.model.ResultData;
 import com.google.gson.Gson;
 import org.xutils.common.Callback;
@@ -21,9 +20,7 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class InitActivity extends Activity {
 
