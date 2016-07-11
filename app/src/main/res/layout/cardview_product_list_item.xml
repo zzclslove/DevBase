@@ -1,0 +1,73 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:padding="5dp"
+    android:background="@color/gray_eee"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <android.support.v7.widget.CardView
+        android:id="@+id/home_product_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        card_view:cardCornerRadius="0dp"
+        card_view:cardBackgroundColor="@color/white_ff" >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp" >
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/pic"
+                fresco:placeholderImage="@drawable/ic_default"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <TextView
+                android:clickable="true"
+                android:id="@+id/name"
+                android:paddingTop="5dp"
+                android:paddingBottom="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:textColor="@color/black_3c"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="12sp" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:gravity="left"
+                    android:text="￥"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/activityColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp" />
+                <TextView
+                    android:id="@+id/price_int"
+                    android:gravity="left"
+                    android:textSize="16sp"
+                    android:textColor="@color/activityColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp" />
+                <TextView
+                    android:id="@+id/price_decimal"
+                    android:gravity="left"
+                    android:textSize="12sp"
+                    android:textColor="@color/activityColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp" />
+                <TextView
+                    android:id="@+id/org_price"
+                    android:layout_marginLeft="2dp"
+                    android:gravity="left"
+                    android:textColor="@color/gray_999"
+                    android:textSize="12sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

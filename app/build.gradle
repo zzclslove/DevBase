@@ -34,7 +34,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'org.xutils:xutils:3.3.36'
     compile 'com.shizhefei:MVCHelper-Library:1.0.4'
-    compile 'com.shizhefei:MVCHelper-UltraRefresh:1.0.4'
     compile 'in.srain.cube:ultra-ptr:1.0.11'
     compile 'com.squareup.okhttp3:okhttp:3.4.0'
 }

@@ -14,22 +14,18 @@ import com.devapp.base.MPtrClassicFrameLayout;
 import com.devapp.base.Token;
 import com.devapp.model.Product;
 import com.devapp.model.ProductDataSource;
-import com.devapp.model.ResultProducts;
 
 import com.shizhefei.mvc.MVCHelper;
-import com.shizhefei.mvc.MVCUltraHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import in.srain.cube.views.ptr.PtrClassicFrameLayout;
-
 public class FindingsFragment extends Fragment {
 
-    private FindingsItemAdapter findingsItemAdapter;
     private Token token;
+    private FindingsItemAdapter findingsItemAdapter;
     private MVCHelper<List<Product>> mvcHelper;
 
     public static FindingsFragment newInstance(String s) {
@@ -45,10 +41,8 @@ public class FindingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_findings, container, false);
         token = (Token) getActivity().getApplicationContext();
 
-        List<Map<String, String>> condition = new ArrayList<>();
-        Map map = new HashMap();
-        map.put("intro_type", "is_promote");
-        condition.add(map);
+        Map condition = new HashMap();
+        condition.put("intro_type", "is_promote");
 
         MPtrClassicFrameLayout mPtrFrameLayout = (MPtrClassicFrameLayout) view.findViewById(R.id.rotate_header_list_view_frame);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.finding_list);

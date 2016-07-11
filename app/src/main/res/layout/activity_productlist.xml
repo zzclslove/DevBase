@@ -5,6 +5,8 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:padding="5dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:background="@color/white_ff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -50,13 +52,14 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp" />
     <LinearLayout
+        android:orientation="horizontal"
         android:padding="8dp"
         android:background="@color/white_ff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:paddingLeft="4dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:id="@+id/sort_label"
             android:text="排序："
             android:layout_width="wrap_content"
@@ -66,8 +69,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
+                android:textColor="@color/activityColor"
+                android:textSize="14sp"
+                android:paddingRight="20dp"
+                android:id="@+id/sort_default"
+                android:text="综合"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
                 android:textColor="@color/black_3c"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:paddingRight="20dp"
                 android:id="@+id/sort_sales"
                 android:text="销量"
@@ -75,15 +86,32 @@
                 android:layout_height="match_parent" />
             <TextView
                 android:textColor="@color/black_3c"
-                android:textSize="16sp"
-                android:paddingRight="20dp"
+                android:textSize="14sp"
+                android:paddingRight="3dp"
                 android:id="@+id/sort_price"
                 android:text="价格"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
+            <LinearLayout
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/sort_up"
+                    android:src="@mipmap/sort_up"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp" />
+                <ImageView
+                    android:id="@+id/sort_down"
+                    android:src="@mipmap/sort_down"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp" />
+            </LinearLayout>
             <TextView
                 android:textColor="@color/black_3c"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:id="@+id/sort_time"
                 android:text="上架时间"
                 android:layout_width="wrap_content"
@@ -105,7 +133,7 @@
         uview:ptr_ratio_of_header_height_to_refresh="1.2"
         uview:ptr_resistance="1.7" >
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/finding_list"
+            android:id="@+id/product_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </com.devapp.base.MPtrClassicFrameLayout>

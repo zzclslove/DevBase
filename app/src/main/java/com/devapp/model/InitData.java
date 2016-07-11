@@ -13,7 +13,6 @@ public class InitData {
     private String httpRootUrl;
     private List<Topic> topicList;
     private RecommendProducts recommendProducts;
-    private List<Product> findingProductList;
     private List<Category> categoryList;
     private Cart cart;
 
@@ -73,11 +72,4 @@ public class InitData {
         this.productImageHeight = productImageHeight;
     }
 
-    public List<Product> getFindingProductList() {
-        return findingProductList;
-    }
-
-    public void setFindingProductList(List<Product> findingProductList) {
-        this.findingProductList = findingProductList;
-    }
 }

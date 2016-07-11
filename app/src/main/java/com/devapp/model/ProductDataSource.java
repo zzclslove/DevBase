@@ -17,10 +17,10 @@ import okhttp3.Response;
 public class ProductDataSource implements IDataSource<List<Product>> {
     private int page = 1;
     private int maxPage = 5;
-    private List<Map<String, String>> condition;
+    private Map<String, String> condition;
     private Token token;
 
-    public ProductDataSource(List<Map<String, String>> condition, Token token){
+    public ProductDataSource(Map<String, String> condition, Token token){
         this.condition = condition;
         this.token = token;
     }
@@ -35,14 +35,12 @@ public class ProductDataSource implements IDataSource<List<Product>> {
         return loadProducts(page + 1, condition, token);
     }
 
-    private List<Product> loadProducts(final int currentPage, List<Map<String, String>> condition, Token token) throws Exception {
+    private List<Product> loadProducts(final int currentPage, Map<String, String> condition, Token token) throws Exception {
 
         String url = token.getRootUrl() + "api/goods.php?action=get_goods_list&page=" + currentPage;
-        for (Map<String, String> con:condition) {
-            for (String k : con.keySet())
-            {
-                url += "&" + k + "=" + con.get(k);
-            }
+        for (String k : condition.keySet())
+        {
+            url += "&" + k + "=" + condition.get(k);
         }
         Request request = new Request.Builder().url(url).build();
         OkHttpClient client = new OkHttpClient();
