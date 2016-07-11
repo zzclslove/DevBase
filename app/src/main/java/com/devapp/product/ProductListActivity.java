@@ -11,11 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.devapp.R;
+import com.devapp.base.MDefaultLoadViewFactory;
 import com.devapp.base.MMVCUltraHelper;
 import com.devapp.base.MPtrClassicFrameLayout;
 import com.devapp.base.Token;
 import com.devapp.model.Product;
 import com.devapp.model.ProductDataSource;
+import com.shizhefei.mvc.ILoadViewFactory;
 import com.shizhefei.mvc.MVCHelper;
 
 import java.util.HashMap;
@@ -37,11 +39,10 @@ public class ProductListActivity extends Activity {
     private ImageView sortDown;
 
     private MPtrClassicFrameLayout mPtrFrameLayout;
-    private RecyclerView recyclerView;
-
     private MVCHelper<List<Product>> mvcHelper;
-    private ProductListAdapter productListAdapter;
 
+    private RecyclerView recyclerView;
+    private ProductListAdapter productListAdapter;
     private Token token;
 
     @Override
@@ -77,8 +78,9 @@ public class ProductListActivity extends Activity {
                 return false;
             }
         });
-        mvcHelper = new MMVCUltraHelper<>(mPtrFrameLayout);
 
+        MVCHelper.setLoadViewFractory(new MDefaultLoadViewFactory());
+        mvcHelper = new MMVCUltraHelper<>(mPtrFrameLayout);
         showProductResultList();
 
         sortDefault.setOnClickListener(new View.OnClickListener() {

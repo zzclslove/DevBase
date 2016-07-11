@@ -6,7 +6,6 @@ import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.widget.AbsListView;
 
-import com.shizhefei.mvc.ILoadViewFactory;
 import com.shizhefei.mvc.IRefreshView;
 import com.shizhefei.mvc.MVCHelper;
 
@@ -22,7 +21,7 @@ public class MMVCUltraHelper<DATA> extends MVCHelper<DATA> {
         super(new RefreshView(ptrClassicFrameLayout));
     }
 
-    public MMVCUltraHelper(MPtrClassicFrameLayout ptrClassicFrameLayout, ILoadViewFactory.ILoadView loadView, ILoadViewFactory.ILoadMoreView loadMoreView) {
+    public MMVCUltraHelper(MPtrClassicFrameLayout ptrClassicFrameLayout, MDefaultLoadViewFactory.ILoadView loadView, MDefaultLoadViewFactory.ILoadMoreView loadMoreView) {
         super(new RefreshView(ptrClassicFrameLayout), loadView, loadMoreView);
     }
 
