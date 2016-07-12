@@ -15,12 +15,17 @@ import com.devapp.model.CartProduct;
 import com.devapp.model.InitData;
 import com.devapp.model.ResultData;
 import com.google.gson.Gson;
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
+
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class InitActivity extends Activity {
 
@@ -83,13 +88,44 @@ public class InitActivity extends Activity {
         cart.setCartProducts(cartProductList);
         token.getInitData().setCart(cart);
 
-        RequestParams paramsCategory = new RequestParams(token.getRootUrl() + "api/index.php");
-        paramsCategory.addQueryStringParameter("action", "get_init_data");
-        x.http().get(paramsCategory, new Callback.CommonCallback<String>() {
+        String url = token.getRootUrl() + "api/index.php?action=get_init_data";
+        Request request = new Request.Builder().url(url).build();
+        OkHttpClient client = new OkHttpClient();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
             @Override
-            public void onSuccess(String result) {
+            public void onFailure(Call call, IOException e) {
+                final String errorMMessage = e.getMessage();
+                InitActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AlertDialog.Builder builder=new AlertDialog.Builder(self);
+                        builder.setMessage(errorMMessage);
+                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() { //设置确定按钮
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss(); //关闭dialog
+                                Intent i = new Intent(self, InitActivity.class);
+                                startActivity(i);
+                                self.finish();
+                            }
+                        });
+                        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() { //设置取消按钮
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                self.finish();
+                            }
+                        });
+                        builder.create().show();
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                ResultData resultData = gson.fromJson(result, ResultData.class);
+                ResultData resultData = gson.fromJson(response.body().string(), ResultData.class);
                 if(resultData.isResult()){
                     InitData initDataRes = gson.fromJson(resultData.getData(), InitData.class);
                     token.getInitData().setCategoryList(initDataRes.getCategoryList());
@@ -101,34 +137,7 @@ public class InitActivity extends Activity {
                     self.finish();
                 }
             }
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-                AlertDialog.Builder builder=new AlertDialog.Builder(self);
-                builder.setMessage("应用加载失败，是否重新加载？");
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() { //设置确定按钮
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss(); //关闭dialog
-                        Intent i = new Intent(self, InitActivity.class);
-                        startActivity(i);
-                        self.finish();
-                    }
-                });
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() { //设置取消按钮
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        self.finish();
-                    }
-                });
-                builder.create().show();
-            }
-            @Override
-            public void onCancelled(CancelledException cex) { }
-            @Override
-            public void onFinished() { }
         });
-
     }
 
     @Override

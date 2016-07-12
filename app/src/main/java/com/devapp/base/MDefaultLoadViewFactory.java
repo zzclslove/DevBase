@@ -20,6 +20,8 @@ import com.shizhefei.view.vary.VaryViewHelper;
  */
 public class MDefaultLoadViewFactory implements ILoadViewFactory {
 
+    private Token token;
+
     @Override
     public ILoadViewFactory.ILoadMoreView madeLoadMoreView() {
         return new LoadMoreHelper();
@@ -40,14 +42,12 @@ public class MDefaultLoadViewFactory implements ILoadViewFactory {
         public void init(ILoadViewFactory.FootViewAdder footViewHolder, View.OnClickListener onClickRefreshListener) {
             View contentView = footViewHolder.getContentView();
             Context context = contentView.getContext();
-            Token token = (Token) context.getApplicationContext();
+            token = (Token) context.getApplicationContext();
             TextView textView = new TextView(context);
             textView.setTextColor(Color.GRAY);
             textView.setPadding(0, dip2px(context, 16), 0, dip2px(context, 16));
             textView.setGravity(Gravity.CENTER);
             footViewHolder.addFootView(textView);
-            footViewHolder.getContentView().getRootView().setLayoutParams(new LinearLayout.LayoutParams(token.getWindowWidth(), LinearLayout.LayoutParams.WRAP_CONTENT));
-            textView.setLayoutParams(new LinearLayout.LayoutParams(token.getWindowWidth(), LinearLayout.LayoutParams.WRAP_CONTENT));
             footView = textView;
             this.onClickRefreshListener = onClickRefreshListener;
             showNormal();

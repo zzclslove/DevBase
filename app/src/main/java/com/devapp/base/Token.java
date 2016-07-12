@@ -2,14 +2,7 @@ package com.devapp.base;
 
 import android.app.Application;
 
-import com.devapp.model.Cart;
-import com.devapp.model.Category;
 import com.devapp.model.InitData;
-import com.devapp.model.Product;
-import com.devapp.model.Topic;
-import org.xutils.x;
-import java.util.List;
-import java.util.Map;
 
 public class Token extends Application {
 
@@ -17,7 +10,6 @@ public class Token extends Application {
     public void onCreate()
     {
         super.onCreate();
-        x.Ext.init(this);
     }
 
     private String rootUrl;
