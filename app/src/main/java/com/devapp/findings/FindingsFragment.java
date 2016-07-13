@@ -7,20 +7,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.devapp.R;
 import com.devapp.base.MMVCUltraHelper;
-import com.devapp.base.MPtrClassicFrameLayout;
 import com.devapp.base.Token;
 import com.devapp.model.Product;
 import com.devapp.model.ProductDataSource;
-
 import com.shizhefei.mvc.MVCHelper;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 
 public class FindingsFragment extends Fragment {
 
@@ -44,7 +41,7 @@ public class FindingsFragment extends Fragment {
         Map condition = new HashMap();
         condition.put("intro_type", "is_promote");
 
-        MPtrClassicFrameLayout mPtrFrameLayout = (MPtrClassicFrameLayout) view.findViewById(R.id.rotate_header_list_view_frame);
+        PtrClassicFrameLayout mPtrFrameLayout = (PtrClassicFrameLayout) view.findViewById(R.id.rotate_header_list_view_frame);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.finding_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 

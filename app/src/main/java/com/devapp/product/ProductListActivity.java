@@ -11,18 +11,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.devapp.R;
-import com.devapp.base.MDefaultLoadViewFactory;
 import com.devapp.base.MMVCUltraHelper;
-import com.devapp.base.MPtrClassicFrameLayout;
 import com.devapp.base.Token;
 import com.devapp.model.Product;
 import com.devapp.model.ProductDataSource;
-import com.shizhefei.mvc.ILoadViewFactory;
 import com.shizhefei.mvc.MVCHelper;
+import com.shizhefei.mvc.imp.DefaultLoadViewFactory;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 
 public class ProductListActivity extends Activity {
 
@@ -38,7 +38,7 @@ public class ProductListActivity extends Activity {
     private ImageView sortUp;
     private ImageView sortDown;
 
-    private MPtrClassicFrameLayout mPtrFrameLayout;
+    private PtrClassicFrameLayout mPtrFrameLayout;
     private MVCHelper<List<Product>> mvcHelper;
 
     private RecyclerView recyclerView;
@@ -63,7 +63,7 @@ public class ProductListActivity extends Activity {
         Bundle bundle = this.getIntent().getExtras();
         catId = bundle.getString("catId");
 
-        mPtrFrameLayout = (MPtrClassicFrameLayout) findViewById(R.id.rotate_header_list_view_frame);
+        mPtrFrameLayout = (PtrClassicFrameLayout) findViewById(R.id.rotate_header_list_view_frame);
         recyclerView = (RecyclerView) findViewById(R.id.product_list);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         productListAdapter = new ProductListAdapter(getApplicationContext());
@@ -79,7 +79,7 @@ public class ProductListActivity extends Activity {
             }
         });
 
-        MVCHelper.setLoadViewFractory(new MDefaultLoadViewFactory());
+        MVCHelper.setLoadViewFractory(new DefaultLoadViewFactory());
         mvcHelper = new MMVCUltraHelper<>(mPtrFrameLayout);
         showProductResultList();
 

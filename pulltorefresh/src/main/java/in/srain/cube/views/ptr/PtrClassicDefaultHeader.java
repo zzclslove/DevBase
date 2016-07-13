@@ -1,4 +1,4 @@
-package com.devapp.base;
+package in.srain.cube.views.ptr;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,20 +11,12 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
-import com.devapp.R;
+import in.srain.cube.views.ptr.indicator.PtrIndicator;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.PtrUIHandler;
-import in.srain.cube.views.ptr.indicator.PtrIndicator;
-
-/**
- * Created by Administrator on 2016/7/9.
- */
-public class MPtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler {
+public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler {
 
     private final static String KEY_SharedPreferences = "cube_ptr_classic_last_update";
     private static SimpleDateFormat sDataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -41,34 +33,34 @@ public class MPtrClassicDefaultHeader extends FrameLayout implements PtrUIHandle
 
     private LastUpdateTimeUpdater mLastUpdateTimeUpdater = new LastUpdateTimeUpdater();
 
-    public MPtrClassicDefaultHeader(Context context) {
+    public PtrClassicDefaultHeader(Context context) {
         super(context);
         initViews(null);
     }
 
-    public MPtrClassicDefaultHeader(Context context, AttributeSet attrs) {
+    public PtrClassicDefaultHeader(Context context, AttributeSet attrs) {
         super(context, attrs);
         initViews(attrs);
     }
 
-    public MPtrClassicDefaultHeader(Context context, AttributeSet attrs, int defStyle) {
+    public PtrClassicDefaultHeader(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         initViews(attrs);
     }
 
     protected void initViews(AttributeSet attrs) {
-        TypedArray arr = getContext().obtainStyledAttributes(attrs, in.srain.cube.views.ptr.R.styleable.PtrClassicHeader, 0, 0);
+        TypedArray arr = getContext().obtainStyledAttributes(attrs, R.styleable.PtrClassicHeader, 0, 0);
         if (arr != null) {
-            mRotateAniTime = arr.getInt(in.srain.cube.views.ptr.R.styleable.PtrClassicHeader_ptr_rotate_ani_time, mRotateAniTime);
+            mRotateAniTime = arr.getInt(R.styleable.PtrClassicHeader_ptr_rotate_ani_time, mRotateAniTime);
         }
         buildAnimation();
-        View header = LayoutInflater.from(getContext()).inflate(R.layout.header_list_loading, this);
+        View header = LayoutInflater.from(getContext()).inflate(R.layout.cube_ptr_classic_default_header, this);
 
-        mRotateView = header.findViewById(in.srain.cube.views.ptr.R.id.ptr_classic_header_rotate_view);
+        mRotateView = header.findViewById(R.id.ptr_classic_header_rotate_view);
 
-        mTitleTextView = (TextView) header.findViewById(in.srain.cube.views.ptr.R.id.ptr_classic_header_rotate_view_header_title);
-        mLastUpdateTextView = (TextView) header.findViewById(in.srain.cube.views.ptr.R.id.ptr_classic_header_rotate_view_header_last_update);
-        mProgressBar = header.findViewById(in.srain.cube.views.ptr.R.id.ptr_classic_header_rotate_view_progressbar);
+        mTitleTextView = (TextView) header.findViewById(R.id.ptr_classic_header_rotate_view_header_title);
+        mLastUpdateTextView = (TextView) header.findViewById(R.id.ptr_classic_header_rotate_view_header_last_update);
+        mProgressBar = header.findViewById(R.id.ptr_classic_header_rotate_view_progressbar);
 
         resetView();
     }
@@ -151,9 +143,9 @@ public class MPtrClassicDefaultHeader extends FrameLayout implements PtrUIHandle
         mRotateView.setVisibility(VISIBLE);
         mTitleTextView.setVisibility(VISIBLE);
         if (frame.isPullToRefresh()) {
-            mTitleTextView.setText(getResources().getString(in.srain.cube.views.ptr.R.string.cube_ptr_pull_down_to_refresh));
+            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down_to_refresh));
         } else {
-            mTitleTextView.setText(getResources().getString(in.srain.cube.views.ptr.R.string.cube_ptr_pull_down));
+            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down));
         }
     }
 
@@ -163,7 +155,7 @@ public class MPtrClassicDefaultHeader extends FrameLayout implements PtrUIHandle
         hideRotateView();
         mProgressBar.setVisibility(VISIBLE);
         mTitleTextView.setVisibility(VISIBLE);
-        mTitleTextView.setText(in.srain.cube.views.ptr.R.string.cube_ptr_refreshing);
+        mTitleTextView.setText(R.string.cube_ptr_refreshing);
 
         tryUpdateLastUpdateTime();
         mLastUpdateTimeUpdater.stop();
@@ -176,7 +168,7 @@ public class MPtrClassicDefaultHeader extends FrameLayout implements PtrUIHandle
         mProgressBar.setVisibility(INVISIBLE);
 
         mTitleTextView.setVisibility(VISIBLE);
-        mTitleTextView.setText(getResources().getString(in.srain.cube.views.ptr.R.string.cube_ptr_refresh_complete));
+        mTitleTextView.setText(getResources().getString(R.string.cube_ptr_refresh_complete));
 
         // update last update time
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(KEY_SharedPreferences, 0);
@@ -217,10 +209,10 @@ public class MPtrClassicDefaultHeader extends FrameLayout implements PtrUIHandle
             return null;
         }
         StringBuilder sb = new StringBuilder();
-        sb.append(getContext().getString(in.srain.cube.views.ptr.R.string.cube_ptr_last_update));
+        sb.append(getContext().getString(R.string.cube_ptr_last_update));
 
         if (seconds < 60) {
-            sb.append(seconds + getContext().getString(in.srain.cube.views.ptr.R.string.cube_ptr_seconds_ago));
+            sb.append(seconds + getContext().getString(R.string.cube_ptr_seconds_ago));
         } else {
             int minutes = (seconds / 60);
             if (minutes > 60) {
@@ -229,11 +221,11 @@ public class MPtrClassicDefaultHeader extends FrameLayout implements PtrUIHandle
                     Date date = new Date(mLastUpdateTime);
                     sb.append(sDataFormat.format(date));
                 } else {
-                    sb.append(hours + getContext().getString(in.srain.cube.views.ptr.R.string.cube_ptr_hours_ago));
+                    sb.append(hours + getContext().getString(R.string.cube_ptr_hours_ago));
                 }
 
             } else {
-                sb.append(minutes + getContext().getString(in.srain.cube.views.ptr.R.string.cube_ptr_minutes_ago));
+                sb.append(minutes + getContext().getString(R.string.cube_ptr_minutes_ago));
             }
         }
         return sb.toString();
@@ -268,16 +260,16 @@ public class MPtrClassicDefaultHeader extends FrameLayout implements PtrUIHandle
     private void crossRotateLineFromTopUnderTouch(PtrFrameLayout frame) {
         if (!frame.isPullToRefresh()) {
             mTitleTextView.setVisibility(VISIBLE);
-            mTitleTextView.setText(in.srain.cube.views.ptr.R.string.cube_ptr_release_to_refresh);
+            mTitleTextView.setText(R.string.cube_ptr_release_to_refresh);
         }
     }
 
     private void crossRotateLineFromBottomUnderTouch(PtrFrameLayout frame) {
         mTitleTextView.setVisibility(VISIBLE);
         if (frame.isPullToRefresh()) {
-            mTitleTextView.setText(getResources().getString(in.srain.cube.views.ptr.R.string.cube_ptr_pull_down_to_refresh));
+            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down_to_refresh));
         } else {
-            mTitleTextView.setText(getResources().getString(in.srain.cube.views.ptr.R.string.cube_ptr_pull_down));
+            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down));
         }
     }
 
@@ -306,5 +298,4 @@ public class MPtrClassicDefaultHeader extends FrameLayout implements PtrUIHandle
             }
         }
     }
-
 }

@@ -8,7 +8,9 @@ import android.widget.AbsListView;
 
 import com.shizhefei.mvc.IRefreshView;
 import com.shizhefei.mvc.MVCHelper;
+import com.shizhefei.mvc.imp.DefaultLoadViewFactory;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 
@@ -17,11 +19,11 @@ import in.srain.cube.views.ptr.PtrHandler;
  */
 public class MMVCUltraHelper<DATA> extends MVCHelper<DATA> {
 
-    public MMVCUltraHelper(MPtrClassicFrameLayout ptrClassicFrameLayout) {
+    public MMVCUltraHelper(PtrClassicFrameLayout ptrClassicFrameLayout) {
         super(new RefreshView(ptrClassicFrameLayout));
     }
 
-    public MMVCUltraHelper(MPtrClassicFrameLayout ptrClassicFrameLayout, MDefaultLoadViewFactory.ILoadView loadView, MDefaultLoadViewFactory.ILoadMoreView loadMoreView) {
+    public MMVCUltraHelper(PtrClassicFrameLayout ptrClassicFrameLayout, DefaultLoadViewFactory.ILoadView loadView, DefaultLoadViewFactory.ILoadMoreView loadMoreView) {
         super(new RefreshView(ptrClassicFrameLayout), loadView, loadMoreView);
     }
 
