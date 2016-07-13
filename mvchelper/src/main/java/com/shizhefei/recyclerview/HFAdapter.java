@@ -1,5 +1,7 @@
 package com.shizhefei.recyclerview;
 
+import android.content.Context;
+import android.graphics.Point;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import java.util.ArrayList;
@@ -95,7 +98,10 @@ public abstract class HFAdapter extends RecyclerView.Adapter {
 			// create a new framelayout, or inflate from a resource
 			FrameLayout frameLayout = new FrameLayout(viewGroup.getContext());
 			// make sure it fills the space
-			frameLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+			WindowManager wm = (WindowManager) viewGroup.getContext().getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+			Point autoSize = new Point();
+			wm.getDefaultDisplay().getSize(autoSize);
+			frameLayout.setLayoutParams(new ViewGroup.LayoutParams(autoSize.x, ViewGroup.LayoutParams.WRAP_CONTENT));
 			return new HeaderFooterViewHolder(frameLayout);
 		}
 	}

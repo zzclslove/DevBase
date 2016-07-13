@@ -45,7 +45,6 @@ public class DefaultLoadViewFactory implements ILoadViewFactory {
 	private class LoadMoreHelper implements ILoadMoreView {
 
 		protected TextView footView;
-
 		protected OnClickListener onClickRefreshListener;
 
 		@Override
@@ -55,7 +54,7 @@ public class DefaultLoadViewFactory implements ILoadViewFactory {
 			Context context = contentView.getContext();
 			TextView textView = new TextView(context);
 			textView.setTextColor(Color.GRAY);
-			textView.setPadding(0, dip2px(context, 16), 0, dip2px(context, 16));
+			textView.setPadding(0, dip2px(context, 12), 0, dip2px(context, 12));
 			textView.setGravity(Gravity.CENTER);
 			footViewHolder.addFootView(textView);
 			

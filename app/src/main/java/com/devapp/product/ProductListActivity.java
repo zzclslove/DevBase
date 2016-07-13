@@ -65,7 +65,8 @@ public class ProductListActivity extends Activity {
 
         mPtrFrameLayout = (PtrClassicFrameLayout) findViewById(R.id.rotate_header_list_view_frame);
         recyclerView = (RecyclerView) findViewById(R.id.product_list);
-        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
         productListAdapter = new ProductListAdapter(getApplicationContext());
         productListAdapter.setOnRecyclerViewListener(new ProductListAdapter.OnRecyclerViewListener() {
             @Override
