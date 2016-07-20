@@ -64,7 +64,7 @@ public class FindingsFragment extends Fragment {
 
         mvcHelper = new MMVCUltraHelper<>(mPtrFrameLayout);
         // 设置数据源
-        mvcHelper.setDataSource(new ProductDataSource(condition, token));
+        mvcHelper.setDataSource(new ProductDataSource(condition, token, 1));
         // 设置适配器
         mvcHelper.setAdapter(findingsItemAdapter);
         // 加载数据

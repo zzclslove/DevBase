@@ -19,10 +19,12 @@ public class ProductDataSource implements IDataSource<List<Product>> {
     private int maxPage = 5;
     private Map<String, String> condition;
     private Token token;
+    private int columNum;
 
-    public ProductDataSource(Map<String, String> condition, Token token){
+    public ProductDataSource(Map<String, String> condition, Token token, int columNum){
         this.condition = condition;
         this.token = token;
+        this.columNum = columNum;
     }
 
     @Override
@@ -50,7 +52,11 @@ public class ProductDataSource implements IDataSource<List<Product>> {
         ResultProducts resultData = gson.fromJson(response.body().string(), ResultProducts.class);
         page = currentPage;
         maxPage = resultData.getPage_count();
-        return resultData.getGoods();
+        List<Product> productList = resultData.getGoods();
+        if(productList.size() % columNum != 0){
+            productList.subList(productList.size() / columNum * columNum, productList.size()).clear();
+        }
+        return productList;
     }
 
     @Override

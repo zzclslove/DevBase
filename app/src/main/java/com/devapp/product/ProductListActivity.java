@@ -144,7 +144,7 @@ public class ProductListActivity extends Activity {
         condition.put("sort_order", order);
         condition.put("cat_id", catId);
 
-        mvcHelper.setDataSource(new ProductDataSource(condition, token));
+        mvcHelper.setDataSource(new ProductDataSource(condition, token, 2));
         mvcHelper.setAdapter(productListAdapter);
         mvcHelper.refresh();
     }
