@@ -1,6 +1,7 @@
-package com.devapp.model;
+package com.devapp.data;
 
 import com.devapp.base.Token;
+import com.devapp.model.Product;
 import com.google.gson.Gson;
 import com.shizhefei.mvc.IDataSource;
 

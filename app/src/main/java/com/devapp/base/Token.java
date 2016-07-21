@@ -2,7 +2,7 @@ package com.devapp.base;
 
 import android.app.Application;
 
-import com.devapp.model.InitData;
+import com.devapp.data.InitData;
 
 public class Token extends Application {
 

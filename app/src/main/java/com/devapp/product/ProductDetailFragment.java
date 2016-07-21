@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import com.devapp.R;
 import com.devapp.model.Product;
 
-public class ProductFragment extends Fragment {
+public class ProductDetailFragment extends Fragment {
 
-    static ProductFragment newInstance(Product product) {
-        ProductFragment newFragment = new ProductFragment();
+    static ProductDetailFragment newInstance(Product product) {
+        ProductDetailFragment newFragment = new ProductDetailFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable("product", product);
         newFragment.setArguments(bundle);
@@ -21,7 +21,7 @@ public class ProductFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_product, container, false);
+        View view = inflater.inflate(R.layout.fragment_product_detail, container, false);
 
         Product product = (Product) savedInstanceState.getSerializable("product");
 

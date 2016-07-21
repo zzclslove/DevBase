@@ -1,7 +1,10 @@
-package com.devapp.model;
+package com.devapp.data;
+
+import com.devapp.model.Cart;
+import com.devapp.model.Category;
+import com.devapp.model.Topic;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2016/7/5.

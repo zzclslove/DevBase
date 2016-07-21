@@ -1,4 +1,4 @@
-package com.devapp.model;
+package com.devapp.data;
 
 /**
  * Created by Administrator on 2016/7/3.

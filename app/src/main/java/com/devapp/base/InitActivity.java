@@ -12,8 +12,8 @@ import android.view.WindowManager;
 import com.devapp.R;
 import com.devapp.model.Cart;
 import com.devapp.model.CartProduct;
-import com.devapp.model.InitData;
-import com.devapp.model.ResultData;
+import com.devapp.data.InitData;
+import com.devapp.data.ResultData;
 import com.google.gson.Gson;
 
 import java.io.IOException;

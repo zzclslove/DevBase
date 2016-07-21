@@ -11,7 +11,7 @@ import com.devapp.R;
 import com.devapp.base.MMVCUltraHelper;
 import com.devapp.base.Token;
 import com.devapp.model.Product;
-import com.devapp.model.ProductDataSource;
+import com.devapp.data.ProductDataSource;
 import com.shizhefei.mvc.MVCHelper;
 import java.util.HashMap;
 import java.util.List;

@@ -1,4 +1,6 @@
-package com.devapp.model;
+package com.devapp.data;
+
+import com.devapp.model.Product;
 
 import java.util.List;
 

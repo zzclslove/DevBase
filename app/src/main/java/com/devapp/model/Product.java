@@ -14,6 +14,13 @@ public class Product implements Serializable {
     private List<String> goods_img;
     private String brief;
     private String promote_end_date;
+    private String promote_start_date;
+    private int cat_id;
+    private int click_count;
+    private String goods_desc;
+    private int goods_sales;
+    private List<Comment> comments;
+    private List<BuyNote> notes;
 
     public int getId() {
         return id;
@@ -85,5 +92,61 @@ public class Product implements Serializable {
 
     public void setPromote_end_date(String promote_end_date) {
         this.promote_end_date = promote_end_date;
+    }
+
+    public String getPromote_start_date() {
+        return promote_start_date;
+    }
+
+    public void setPromote_start_date(String promote_start_date) {
+        this.promote_start_date = promote_start_date;
+    }
+
+    public int getCat_id() {
+        return cat_id;
+    }
+
+    public void setCat_id(int cat_id) {
+        this.cat_id = cat_id;
+    }
+
+    public int getClick_count() {
+        return click_count;
+    }
+
+    public void setClick_count(int click_count) {
+        this.click_count = click_count;
+    }
+
+    public String getGoods_desc() {
+        return goods_desc;
+    }
+
+    public void setGoods_desc(String goods_desc) {
+        this.goods_desc = goods_desc;
+    }
+
+    public int getGoods_sales() {
+        return goods_sales;
+    }
+
+    public void setGoods_sales(int goods_sales) {
+        this.goods_sales = goods_sales;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public List<BuyNote> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<BuyNote> notes) {
+        this.notes = notes;
     }
 }
