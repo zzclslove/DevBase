@@ -62,7 +62,7 @@ public class CartItemAdapter extends RecyclerView.Adapter {
         List<ProductProp> props = cartProduct.getProps();
         String propsText = "";
         for (ProductProp productProp: props){
-            propsText += productProp.getPropName() + ":" + productProp.getPropValue() + " ";
+            //propsText += productProp.getPropName() + ":" + productProp.getPropValue() + " ";
         }
         holder.props.setText(propsText);
         holder.image.setAspectRatio((float) token.getProductImageScale());

@@ -21,6 +21,8 @@ public class Product implements Serializable {
     private int goods_sales;
     private List<Comment> comments;
     private List<BuyNote> notes;
+    private List<ProductProp> props;
+    private List<ProductSpec> specs;
 
     public int getId() {
         return id;
@@ -148,5 +150,21 @@ public class Product implements Serializable {
 
     public void setNotes(List<BuyNote> notes) {
         this.notes = notes;
+    }
+
+    public List<ProductProp> getProps() {
+        return props;
+    }
+
+    public void setProps(List<ProductProp> props) {
+        this.props = props;
+    }
+
+    public List<ProductSpec> getSpecs() {
+        return specs;
+    }
+
+    public void setSpecs(List<ProductSpec> specs) {
+        this.specs = specs;
     }
 }

@@ -4,10 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.devapp.home.HomeTabsContentFragment;
 import com.devapp.model.Product;
 
-import java.util.List;
 
 /**
  * Created by Administrator on 2016/7/21.

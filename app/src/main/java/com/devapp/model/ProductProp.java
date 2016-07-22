@@ -2,22 +2,22 @@ package com.devapp.model;
 
 public class ProductProp {
 
-    private String propName;
-    private String propValue;
+    private String name;
+    private String value;
 
-    public String getPropName() {
-        return propName;
+    public String getName() {
+        return name;
     }
 
-    public void setPropName(String propName) {
-        this.propName = propName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPropValue() {
-        return propValue;
+    public String getValue() {
+        return value;
     }
 
-    public void setPropValue(String propValue) {
-        this.propValue = propValue;
+    public void setValue(String value) {
+        this.value = value;
     }
 }
