@@ -2,12 +2,15 @@ package com.devapp.data;
 
 import com.devapp.model.Product;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/7/5.
  */
-public class RecommendProducts {
+public class RecommendProducts implements Serializable {
+
+    private static final long serialVersionUID = -5316913991909691631L;
 
     private List<Product> hotProductList;
     private List<Product> bestProductList;

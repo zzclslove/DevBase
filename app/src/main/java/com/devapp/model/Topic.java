@@ -1,9 +1,13 @@
 package com.devapp.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/7/4.
  */
-public class Topic {
+public class Topic implements Serializable {
+
+    private static final long serialVersionUID = 5873363203180152961L;
 
     private int topic_id;
     private String topic_img;

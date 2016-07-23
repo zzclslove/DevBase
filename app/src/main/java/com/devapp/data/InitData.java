@@ -4,12 +4,15 @@ import com.devapp.model.Cart;
 import com.devapp.model.Category;
 import com.devapp.model.Topic;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/7/5.
  */
-public class InitData {
+public class InitData implements Serializable {
+
+    private static final long serialVersionUID = -7023527087901402637L;
 
     private int productImageHeight;
     private int productImageWidth;

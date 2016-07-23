@@ -1,9 +1,13 @@
 package com.devapp.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/7/21.
  */
-public class Comment {
+public class Comment implements Serializable {
+
+    private static final long serialVersionUID = 5629134440929122591L;
 
     private int id;
     private String email;

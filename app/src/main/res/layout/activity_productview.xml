@@ -3,15 +3,58 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.design.widget.TabLayout
-        android:id="@+id/sliding_tabs"
-        style="@style/MyCustomTabLayout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="40dp">
+        <ImageView
+            android:layout_marginTop="2dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="12dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="8dp"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/arr_left"
+            android:id="@+id/search_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <android.support.design.widget.TabLayout
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="90dp"
+            android:id="@+id/sliding_tabs"
+            style="@style/MyCustomTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_marginTop="2dp"
+            android:paddingTop="7dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/akh"
+            android:id="@+id/right_top_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_marginTop="2dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_toLeftOf="@id/right_top_nav"
+            android:src="@mipmap/share"
+            android:id="@+id/right_share"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <View
+        android:background="@color/black_border"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp"
         android:background="@color/gray_eee" />
 </LinearLayout>

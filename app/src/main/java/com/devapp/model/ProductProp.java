@@ -1,6 +1,10 @@
 package com.devapp.model;
 
-public class ProductProp {
+import java.io.Serializable;
+
+public class ProductProp implements Serializable {
+
+    private static final long serialVersionUID = 4838288823163629953L;
 
     private String name;
     private String value;

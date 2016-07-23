@@ -4,22 +4,25 @@ import android.app.Application;
 
 import com.devapp.data.InitData;
 
-public class Token extends Application {
+import java.io.Serializable;
 
-    @Override
-    public void onCreate()
-    {
-        super.onCreate();
-    }
+public class Token extends Application implements Serializable {
 
+    private static final long serialVersionUID = 5042251448446037356L;
+    
     private String rootUrl;
-
     private int windowWidth;
     private int windowHeight;
     private int productImageHeight;
     private int productImageWidth;
     private double productImageScale;   //产品相关图片宽高比
     private InitData initData;
+
+    @Override
+    public void onCreate()
+    {
+        super.onCreate();
+    }
 
     public int getWindowWidth() {
         return windowWidth;

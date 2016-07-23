@@ -1,9 +1,13 @@
 package com.devapp.data;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/7/3.
  */
-public class ResultData {
+public class ResultData implements Serializable {
+
+    private static final long serialVersionUID = -8906778229424595497L;
 
     private boolean result;
     private boolean next;

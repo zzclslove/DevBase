@@ -1,9 +1,13 @@
 package com.devapp.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/7/21.
  */
-public class BuyNote {
+public class BuyNote implements Serializable {
+
+    private static final long serialVersionUID = -6105814205666110386L;
 
     private String user_name;
     private int goods_number;

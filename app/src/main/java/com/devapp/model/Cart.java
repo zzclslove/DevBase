@@ -1,8 +1,11 @@
 package com.devapp.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Cart {
+public class Cart implements Serializable {
+
+    private static final long serialVersionUID = -8536908520449632328L;
 
     private String userName;
     private int userId;

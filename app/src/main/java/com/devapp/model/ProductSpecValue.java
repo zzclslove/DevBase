@@ -1,11 +1,14 @@
 package com.devapp.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * Created by Administrator on 2016/7/22.
  */
-public class ProductSpecValue {
+public class ProductSpecValue implements Serializable {
+
+    private static final long serialVersionUID = -5479683454228154983L;
 
     private String label;
     private BigDecimal price;

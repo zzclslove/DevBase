@@ -1,11 +1,14 @@
 package com.devapp.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/7/22.
  */
-public class ProductSpec {
+public class ProductSpec implements Serializable {
+
+    private static final long serialVersionUID = 3127471827352607078L;
 
     private int attr_id;
     private int attr_type;

@@ -2,12 +2,15 @@ package com.devapp.data;
 
 import com.devapp.model.Product;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/7/9.
  */
-public class ResultProducts {
+public class ResultProducts implements Serializable {
+
+    private static final long serialVersionUID = -7945714090623058395L;
 
     private int page_count;
     private int record_count;

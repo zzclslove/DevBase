@@ -3,6 +3,7 @@ package com.devapp.model;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -11,7 +12,9 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/6/14.
  */
-public class CartProduct {
+public class CartProduct implements Serializable {
+
+    private static final long serialVersionUID = -2537379984238206889L;
 
     private int productId;
     private int num;

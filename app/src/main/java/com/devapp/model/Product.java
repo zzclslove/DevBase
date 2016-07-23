@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Product implements Serializable {
 
+    private static final long serialVersionUID = 4375884007642890474L;
+
     private int id;
     private String name;
     private String market_price;
