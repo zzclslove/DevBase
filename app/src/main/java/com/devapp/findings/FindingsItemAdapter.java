@@ -88,13 +88,12 @@ public class FindingsItemAdapter extends RecyclerView.Adapter implements IDataAd
             holder.price.setText(intPrice + ".");
             holder.decimalPrice.setText(decimalPrice + "");
         }else{
-            holder.price.setText(intPrice + "");
+            holder.price.setText(intPrice + ".");
+            holder.decimalPrice.setText("00");
         }
-        if(product.getMarket_price().length() > 0){
-            holder.prePrice.setText("￥" + product.getMarket_price());
-        }else{
-            holder.prePrice.setText("￥" + product.getShop_price());
-        }
+
+        holder.prePrice.setText("￥" + product.getShop_price());
+
         Uri uri = Uri.parse(token.getRootUrl() + product.getThumb());
         holder.image.setImageURI(uri);
 

@@ -76,13 +76,10 @@ public class ProductListAdapter extends RecyclerView.Adapter implements IDataAda
         holder.title.setText(product.getName());
         BigDecimal price = new BigDecimal(product.getShop_price());
         BigDecimal orgPrice = new BigDecimal("0");
-        if(product.getMarket_price().length() > 0){
-            orgPrice = new BigDecimal(product.getMarket_price());
-        }else{
-            if(product.getPromote_price().length() > 0){
-                orgPrice = new BigDecimal(product.getShop_price());
-                price = new BigDecimal(product.getPromote_price());
-            }
+
+        if(product.getPromote_price().length() > 0){
+            orgPrice = new BigDecimal(product.getShop_price());
+            price = new BigDecimal(product.getPromote_price());
         }
 
         int intPrice = price.setScale(2).intValue();
@@ -91,7 +88,8 @@ public class ProductListAdapter extends RecyclerView.Adapter implements IDataAda
             holder.price.setText(intPrice + ".");
             holder.decimalPrice.setText(decimalPrice + "");
         }else{
-            holder.price.setText(intPrice + "");
+            holder.price.setText(intPrice + ".");
+            holder.decimalPrice.setText("00");
         }
 
         if(orgPrice.compareTo(BigDecimal.ZERO) != 0){
