@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <io.techery.properratingbar.ProperRatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="0dp"
+            app:prb_defaultRating="5"
+            app:prb_tickNormalDrawable="@mipmap/rating_gray"
+            app:prb_tickSelectedDrawable="@mipmap/rating"
+            app:prb_tickSpacing="2dp"
+            app:prb_totalTicks="5"
+            app:prb_clickable="false"
+            />
+        <TextView
+            android:textSize="11sp"
+            android:textColor="@color/black_99"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/comments_username"
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="3dp"
+        android:textSize="12sp"
+        android:textColor="@color/black_3c"
+        android:id="@+id/comments_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/recomments_container"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:text="[店员回复]:"
+            android:textColor="@color/black_3c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="@color/black_3c"
+            android:textSize="12sp"
+            android:id="@+id/comments_recontent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

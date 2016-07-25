@@ -21,6 +21,9 @@ public class Product implements Serializable {
     private int click_count;
     private String goods_desc;
     private int goods_sales;
+    private Float comment_rank;
+    private int comments_count;
+    private int notes_count;
     private List<Comment> comments;
     private List<BuyNote> notes;
     private List<ProductProp> props;
@@ -168,5 +171,29 @@ public class Product implements Serializable {
 
     public void setSpecs(List<ProductSpec> specs) {
         this.specs = specs;
+    }
+
+    public Float getComment_rank() {
+        return comment_rank;
+    }
+
+    public void setComment_rank(Float comment_rank) {
+        this.comment_rank = comment_rank;
+    }
+
+    public int getComments_count() {
+        return comments_count;
+    }
+
+    public void setComments_count(int comments_count) {
+        this.comments_count = comments_count;
+    }
+
+    public int getNotes_count() {
+        return notes_count;
+    }
+
+    public void setNotes_count(int notes_count) {
+        this.notes_count = notes_count;
     }
 }

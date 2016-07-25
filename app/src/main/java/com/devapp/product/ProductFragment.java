@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.devapp.R;
 import com.devapp.base.Token;
 import com.devapp.model.Product;
+import com.devapp.util.DensityUtil;
 
 import org.w3c.dom.Text;
 
@@ -32,6 +34,11 @@ public class ProductFragment extends Fragment implements ViewPagerEx.OnPageChang
     private TextView productPrice;
     private TextView productPriceDou;
     private TextView productOrgPrice;
+    private ListView productReviews;
+    private TextView commentsCount;
+    private TextView commentsRank;
+    private TextView nocomments;
+    private TextView notesTotal;
 
     private int imageCount;
     private Token token;
@@ -58,6 +65,24 @@ public class ProductFragment extends Fragment implements ViewPagerEx.OnPageChang
         productPrice = (TextView) view.findViewById(R.id.product_price);
         productPriceDou = (TextView) view.findViewById(R.id.product_price_d);
         productOrgPrice = (TextView) view.findViewById(R.id.product_org_price);
+        productReviews = (ListView) view.findViewById(R.id.product_reviews);
+        commentsCount = (TextView) view.findViewById(R.id.comments_count);
+        commentsRank = (TextView) view.findViewById(R.id.comments_rank);
+        nocomments = (TextView) view.findViewById(R.id.nocomments);
+        notesTotal = (TextView) view.findViewById(R.id.notes_total);
+
+        if(product.getComments() == null || product.getComments().size() == 0){
+            nocomments.setVisibility(View.VISIBLE);
+            productReviews.setVisibility(View.GONE);
+        }else{
+            productReviews.setAdapter(new ProductReviewAdapter(getActivity(), product.getComments()));
+            DensityUtil.setPullLvHeight(productReviews);
+        }
+
+        commentsCount.setText("(" + product.getComments_count() + ")");
+        commentsRank.setText(Math.ceil(product.getComment_rank()/5*100) + " %");
+
+        notesTotal.setText(product.getNotes_count() + "");
 
         productTitle.setText(product.getName());
         if(product.getBrief().length() == 0){
