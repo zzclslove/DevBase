@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
+        android:id="@+id/page_top"
         android:layout_width="match_parent"
         android:layout_height="40dp">
         <ImageView
@@ -49,12 +51,92 @@
             android:layout_height="match_parent" />
     </RelativeLayout>
     <View
+        android:id="@+id/page_line1"
+        android:layout_below="@id/page_top"
         android:background="@color/black_border"
         android:layout_width="match_parent"
         android:layout_height="0.5dp" />
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
+        android:layout_below="@id/page_line1"
+        android:layout_marginBottom="45dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gray_eee" />
-</LinearLayout>
+    <LinearLayout
+        android:background="@color/white_ff"
+        android:id="@+id/page_bottom"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+        <LinearLayout
+            android:layout_marginTop="2dp"
+            android:padding="3dp"
+            android:orientation="vertical"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/histroy_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:textSize="11sp"
+                android:text="浏览历史"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="2dp"
+            android:padding="3dp"
+            android:orientation="vertical"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/fav_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:textSize="11sp"
+                android:text="我的收藏"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="2dp"
+            android:padding="3dp"
+            android:orientation="vertical"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/cart_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:textSize="11sp"
+                android:text="购物车"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/white_ff"
+            android:background="@color/activityColor"
+            android:text="加入购物车"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <View
+        android:id="@+id/page_line3"
+        android:layout_above="@id/page_bottom"
+        android:background="@color/black_border"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+</RelativeLayout>

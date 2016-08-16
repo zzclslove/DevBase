@@ -40,7 +40,7 @@ public class DensityUtil {
         }
 
         ViewGroup.LayoutParams params = pull.getLayoutParams();
-        params.height = totalHeight + (pull.getDividerHeight() * (pull.getCount() - 1));
+        params.height = totalHeight + (pull.getDividerHeight() * (pull.getCount() - 1)) + 10;
         pull.setLayoutParams(params);
     }
 

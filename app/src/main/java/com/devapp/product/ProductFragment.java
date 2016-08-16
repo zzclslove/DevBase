@@ -3,12 +3,15 @@ package com.devapp.product;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.daimajia.slider.library.Indicators.PagerIndicator;
@@ -16,11 +19,12 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.devapp.R;
+import com.devapp.base.ProductSpecSelectorPopWin;
 import com.devapp.base.Token;
+import com.devapp.model.BuyNote;
 import com.devapp.model.Product;
+import com.devapp.model.ProductSpec;
 import com.devapp.util.DensityUtil;
-
-import org.w3c.dom.Text;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -39,6 +43,11 @@ public class ProductFragment extends Fragment implements ViewPagerEx.OnPageChang
     private TextView commentsRank;
     private TextView nocomments;
     private TextView notesTotal;
+    private TableLayout productNotes;
+    private TextView nonotes;
+    private TextView specsSelected;
+    private LinearLayout specSelectContainer;
+    private View pageBottom;
 
     private int imageCount;
     private Token token;
@@ -55,7 +64,7 @@ public class ProductFragment extends Fragment implements ViewPagerEx.OnPageChang
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product, container, false);
         token = (Token) getActivity().getApplicationContext();
-        Product product = (Product) getArguments().getSerializable("product");
+        final Product product = (Product) getArguments().getSerializable("product");
         List<String> productImages = product.getGoods_img();
         imageCount = productImages.size();
 
@@ -70,6 +79,89 @@ public class ProductFragment extends Fragment implements ViewPagerEx.OnPageChang
         commentsRank = (TextView) view.findViewById(R.id.comments_rank);
         nocomments = (TextView) view.findViewById(R.id.nocomments);
         notesTotal = (TextView) view.findViewById(R.id.notes_total);
+        productNotes = (TableLayout) view.findViewById(R.id.notes_table);
+        nonotes = (TextView) view.findViewById(R.id.nonotes);
+        specsSelected = (TextView) view.findViewById(R.id.specs_select);
+        specSelectContainer = (LinearLayout) view.findViewById(R.id.spec_select_container);
+        pageBottom = view.findViewById(R.id.product_page_bottom);
+
+        specSelectContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProductSpecSelectorPopWin popSpecSelector = new ProductSpecSelectorPopWin(getActivity(), product);
+                popSpecSelector.showAtLocation(getActivity().findViewById(R.id.page_bottom), Gravity.LEFT|Gravity.BOTTOM, 0, 0);
+            }
+        });
+
+        if(product.getSpecs() == null || product.getSpecs().size() == 0){
+            specSelectContainer.setVisibility(View.GONE);
+        }else{
+            specSelectContainer.setVisibility(View.VISIBLE);
+            String specSelectDesc = "请选择 ";
+            int index = 0;
+            for(ProductSpec productSpec: product.getSpecs()){
+                index ++;
+                specSelectDesc += productSpec.getName();
+                if(index != product.getSpecs().size()){
+                    specSelectDesc += "，";
+                }
+            }
+            specsSelected.setText(specSelectDesc);
+        }
+
+        if(product.getNotes() == null || product.getNotes().size() == 0){
+            productNotes.setVisibility(View.GONE);
+            nonotes.setVisibility(View.VISIBLE);
+        }else{
+            productNotes.setVisibility(View.VISIBLE);
+            nonotes.setVisibility(View.GONE);
+            int index = 0;
+            for(BuyNote note: product.getNotes()){
+                index ++;
+                int tvPadding = DensityUtil.dip2px(getActivity(), 3);
+                int border = DensityUtil.dip2px(getActivity(), new Float("0.5"));
+                TableRow tableRow = new TableRow(getActivity());
+                TextView tvName = new TextView(getActivity());
+                TextView tvNum = new TextView(getActivity());
+                TextView tvTime = new TextView(getActivity());
+                TextView tvStatus = new TextView(getActivity());
+                if(note.getUser_name() == null || note.getUser_name().length() == 0){
+                    tvName.setText("匿名用户");
+                }else{
+                    tvName.setText(note.getUser_name());
+                }
+                tvName.setPadding(0, tvPadding, 0, tvPadding);
+                tvName.setTextSize(12);
+                tvName.setTextColor(getResources().getColor(R.color.black_3c));
+                tvNum.setText(note.getGoods_number());
+                tvNum.setGravity(Gravity.CENTER);
+                tvNum.setPadding(0, tvPadding, 0, tvPadding);
+                tvNum.setTextSize(12);
+                tvNum.setTextColor(getResources().getColor(R.color.black_3c));
+                tvTime.setText(note.getAdd_time());
+                tvTime.setGravity(Gravity.CENTER);
+                tvTime.setPadding(0, tvPadding, 0, tvPadding);
+                tvTime.setTextSize(12);
+                tvTime.setTextColor(getResources().getColor(R.color.black_3c));
+                tvStatus.setText("成交");
+                tvStatus.setGravity(Gravity.CENTER);
+                tvStatus.setPadding(0, tvPadding, 0, tvPadding);
+                tvStatus.setTextSize(12);
+                tvStatus.setTextColor(getResources().getColor(R.color.black_3c));
+                tableRow.addView(tvName);
+                tableRow.addView(tvNum);
+                tableRow.addView(tvTime);
+                tableRow.addView(tvStatus);
+                productNotes.addView(tableRow);
+                if(index != product.getNotes().size()){
+                    View borderView = new View(getActivity());
+                    borderView.setBackgroundResource(R.color.black_border);
+                    ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, border);
+                    borderView.setLayoutParams(layoutParams);
+                    productNotes.addView(borderView);
+                }
+            }
+        }
 
         if(product.getComments() == null || product.getComments().size() == 0){
             nocomments.setVisibility(View.VISIBLE);
