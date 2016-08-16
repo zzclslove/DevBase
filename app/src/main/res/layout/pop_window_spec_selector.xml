@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/pop_container"
     android:orientation="vertical"
-    android:background="@color/white_ff"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <RelativeLayout
@@ -11,24 +10,63 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:id="@+id/pop_product_title"
+            android:orientation="vertical"
             android:background="@color/white_ff"
-            android:layout_marginTop="50dp"
-            android:paddingLeft="100dp"
+            android:paddingLeft="120dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:textColor="@color/black_3c"
+                android:maxLines="2"
                 android:id="@+id/pop_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="￥"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/activityColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:id="@+id/product_price"
+                    android:textColor="@color/activityColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/activityColor"
+                    android:id="@+id/product_price_d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginLeft="8dp"
+                    android:textSize="14sp"
+                    android:id="@+id/product_org_price"
+                    android:textColor="@color/black_3c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/pop_product_image"
-            android:layout_width="wrap_content"
+            android:background="@drawable/corners_bg"
+            android:padding="5dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content" />
     </RelativeLayout>
     <TextView
-        android:text="确定"
+        android:text="加入购物车"
         android:layout_below="@id/pop_product_info"
         android:textColor="@color/white_ff"
         android:background="@color/activityColor"

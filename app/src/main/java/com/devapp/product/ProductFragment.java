@@ -1,14 +1,17 @@
 package com.devapp.product;
 
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -88,8 +91,19 @@ public class ProductFragment extends Fragment implements ViewPagerEx.OnPageChang
         specSelectContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+                lp.alpha = 0.3f; //0.0-1.0
+                getActivity().getWindow().setAttributes(lp);
                 ProductSpecSelectorPopWin popSpecSelector = new ProductSpecSelectorPopWin(getActivity(), product);
                 popSpecSelector.showAtLocation(getActivity().findViewById(R.id.page_bottom), Gravity.LEFT|Gravity.BOTTOM, 0, 0);
+                popSpecSelector.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+                        lp.alpha = 1.0f; //0.0-1.0
+                        getActivity().getWindow().setAttributes(lp);
+                    }
+                });
             }
         });
 
