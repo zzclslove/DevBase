@@ -13,7 +13,7 @@ public class Product implements Serializable {
     private String shop_price;
     private String promote_price;
     private String thumb;
-    private List<String> goods_img;
+    private List<ProductImage> goods_img;
     private String brief;
     private String promote_end_date;
     private String promote_start_date;
@@ -51,14 +51,6 @@ public class Product implements Serializable {
 
     public void setThumb(String thumb) {
         this.thumb = thumb;
-    }
-
-    public List<String> getGoods_img() {
-        return goods_img;
-    }
-
-    public void setGoods_img(List<String> goods_img) {
-        this.goods_img = goods_img;
     }
 
     public String getBrief() {
@@ -195,5 +187,13 @@ public class Product implements Serializable {
 
     public void setNotes_count(int notes_count) {
         this.notes_count = notes_count;
+    }
+
+    public List<ProductImage> getGoods_img() {
+        return goods_img;
+    }
+
+    public void setGoods_img(List<ProductImage> goods_img) {
+        this.goods_img = goods_img;
     }
 }

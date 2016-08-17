@@ -13,11 +13,9 @@
             android:id="@+id/pop_product_title"
             android:orientation="vertical"
             android:background="@color/white_ff"
-            android:paddingLeft="120dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp"
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="110dp">
             <TextView
                 android:textColor="@color/black_3c"
                 android:maxLines="2"
@@ -57,13 +55,40 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <TextView
+                android:id="@+id/product_title_desc"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black_3c"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
+        <ScrollView
+            android:background="@color/white_ff"
+            android:layout_below="@id/pop_product_title"
+            android:id="@+id/product_spec_container_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="325dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/product_spec_container"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/pop_product_image"
             android:background="@drawable/corners_bg"
             android:padding="5dp"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="120dp" />
     </RelativeLayout>
     <TextView
         android:text="加入购物车"

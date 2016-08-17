@@ -1,7 +1,6 @@
 package com.devapp.product;
 
 import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -22,10 +21,10 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.devapp.R;
-import com.devapp.base.ProductSpecSelectorPopWin;
 import com.devapp.base.Token;
 import com.devapp.model.BuyNote;
 import com.devapp.model.Product;
+import com.devapp.model.ProductImage;
 import com.devapp.model.ProductSpec;
 import com.devapp.util.DensityUtil;
 
@@ -68,7 +67,7 @@ public class ProductFragment extends Fragment implements ViewPagerEx.OnPageChang
         View view = inflater.inflate(R.layout.fragment_product, container, false);
         token = (Token) getActivity().getApplicationContext();
         final Product product = (Product) getArguments().getSerializable("product");
-        List<String> productImages = product.getGoods_img();
+        List<ProductImage> productImages = product.getGoods_img();
         imageCount = productImages.size();
 
         imagePager = (TextView) view.findViewById(R.id.image_pager);
@@ -226,9 +225,9 @@ public class ProductFragment extends Fragment implements ViewPagerEx.OnPageChang
         RelativeLayout.LayoutParams paramsSlider = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, heightSlider);
         silderContainer.setLayoutParams(paramsSliderContainer);
         sliderLayout.setLayoutParams(paramsSlider);
-        for(String imageUrl: productImages){
+        for(ProductImage productImage: productImages){
             DefaultSliderView sliderView = new DefaultSliderView(view.getContext());
-            sliderView.image(token.getRootUrl() + imageUrl);
+            sliderView.image(token.getRootUrl() + productImage.getUrl());
             sliderLayout.addSlider(sliderView);
         }
         sliderLayout.stopAutoCycle();
