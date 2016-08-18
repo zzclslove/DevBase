@@ -1,6 +1,7 @@
 package com.devapp.base;
 
 import android.app.Application;
+import android.support.v4.view.ViewPager;
 
 import com.devapp.data.InitData;
 
@@ -18,6 +19,7 @@ public class Token extends Application implements Serializable {
     private int productImageWidth;
     private double productImageScale;   //产品相关图片宽高比
     private InitData initData;
+    private ViewPager loginStepViewPager;
 
     @Override
     public void onCreate()
@@ -87,5 +89,13 @@ public class Token extends Application implements Serializable {
 
     public void setLogined(boolean logined) {
         this.logined = logined;
+    }
+
+    public ViewPager getLoginStepViewPager() {
+        return loginStepViewPager;
+    }
+
+    public void setLoginStepViewPager(ViewPager loginStepViewPager) {
+        this.loginStepViewPager = loginStepViewPager;
     }
 }

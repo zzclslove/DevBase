@@ -81,6 +81,7 @@ public class ProductSpecSelectorPopWin extends PopupWindow {
                     Toast.makeText(context, "1111", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(context, LoginActivity.class);
                     context.startActivity(i);
+                    dismiss();
                 }
             }
         });

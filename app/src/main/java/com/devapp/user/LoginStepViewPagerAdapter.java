@@ -3,6 +3,7 @@ package com.devapp.user;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 /**
  * Created by Administrator on 2016/8/18.
