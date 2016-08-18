@@ -21,6 +21,7 @@ public class InitData implements Serializable {
     private RecommendProducts recommendProducts;
     private List<Category> categoryList;
     private Cart cart;
+    private boolean logined;
 
     public List<Topic> getTopicList() {
         return topicList;
@@ -78,4 +79,11 @@ public class InitData implements Serializable {
         this.productImageHeight = productImageHeight;
     }
 
+    public boolean isLogined() {
+        return logined;
+    }
+
+    public void setLogined(boolean logined) {
+        this.logined = logined;
+    }
 }

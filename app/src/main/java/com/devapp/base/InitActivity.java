@@ -132,6 +132,7 @@ public class InitActivity extends Activity {
                     token.getInitData().setRecommendProducts(initDataRes.getRecommendProducts());
                     token.getInitData().setTopicList(initDataRes.getTopicList());
                     token.setProductImageScale(initDataRes.getProductImageWidth()/initDataRes.getProductImageHeight());
+                    token.setLogined(initDataRes.isLogined());
                     Intent i = new Intent(self, MainActivity.class);
                     startActivity(i);
                     self.finish();
