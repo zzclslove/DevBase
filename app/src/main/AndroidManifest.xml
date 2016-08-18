@@ -22,6 +22,7 @@
         <activity android:name=".base.SearchActivity" android:screenOrientation="portrait" />
         <activity android:name=".product.ProductListActivity" android:screenOrientation="portrait" />
         <activity android:name=".product.ProductViewActivity" android:screenOrientation="portrait" />
+        <activity android:name=".user.LoginActivity" android:screenOrientation="portrait" />
 
     </application>
 

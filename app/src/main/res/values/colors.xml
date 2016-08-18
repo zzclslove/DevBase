@@ -10,6 +10,7 @@
     <color name="inActivityColor">#5d5f6a</color>
     <color name="gray_999">#999999</color>
     <color name="gray_cc">#cccccc</color>
+    <color name="gray_500">#9E9E9E</color>
     <color name="white_alpha40">#40ffffff</color>
     <color name="gray_dd">#dddddd</color>
     <color name="gray_de">#dedede</color>

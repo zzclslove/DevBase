@@ -11,6 +11,7 @@ public class Token extends Application implements Serializable {
     private static final long serialVersionUID = 5042251448446037356L;
     
     private String rootUrl;
+    private boolean logined;
     private int windowWidth;
     private int windowHeight;
     private int productImageHeight;
@@ -78,5 +79,13 @@ public class Token extends Application implements Serializable {
 
     public void setProductImageWidth(int productImageWidth) {
         this.productImageWidth = productImageWidth;
+    }
+
+    public boolean isLogined() {
+        return logined;
+    }
+
+    public void setLogined(boolean logined) {
+        this.logined = logined;
     }
 }

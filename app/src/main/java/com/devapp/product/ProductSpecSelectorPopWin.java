@@ -2,8 +2,8 @@ package com.devapp.product;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.view.KeyEvent;
@@ -11,22 +11,26 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.devapp.R;
 import com.devapp.base.SpecWarpLinearLayout;
 import com.devapp.base.Token;
 import com.devapp.model.Product;
+import com.devapp.model.ProductImage;
 import com.devapp.model.ProductSpec;
 import com.devapp.model.ProductSpecValue;
+import com.devapp.user.LoginActivity;
 import com.devapp.util.DensityUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/7/28.
@@ -45,12 +49,13 @@ public class ProductSpecSelectorPopWin extends PopupWindow {
     private TextView productTitleDescription;
     private LinearLayout productSpecContainer;
     private RelativeLayout popupWindowContainer;
-    private ImageView popupWindowClose;
     private ImageButton addButton;
     private ImageButton reduceButon;
     private TextView editNum;
+    private List<Integer> specIdSelected;
+    private TextView addToCart;
 
-    public ProductSpecSelectorPopWin(Context mContext, Product product) {
+    public ProductSpecSelectorPopWin(Context mContext, final Product product) {
         this.context = mContext;
         token = (Token) mContext.getApplicationContext();
         view = LayoutInflater.from(mContext).inflate(R.layout.pop_window_spec_selector, null);
@@ -63,10 +68,22 @@ public class ProductSpecSelectorPopWin extends PopupWindow {
         productTitleDescription = (TextView) view.findViewById(R.id.product_title_desc);
         productSpecContainer = (LinearLayout) view.findViewById(R.id.product_spec_container);
         popupWindowContainer = (RelativeLayout) view.findViewById(R.id.pop_container);
-        popupWindowClose = (ImageView) view.findViewById(R.id.pop_colose);
         addButton = (ImageButton) view.findViewById(R.id.cart_item_add);
         reduceButon = (ImageButton) view.findViewById(R.id.cart_item_reduce);
         editNum = (TextView) view.findViewById(R.id.cart_item_num);
+        addToCart = (TextView) view.findViewById(R.id.btn_addtocart);
+        specIdSelected = new ArrayList<>();
+
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!token.isLogined()){
+                    Toast.makeText(context, "1111", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(context, LoginActivity.class);
+                    context.startActivity(i);
+                }
+            }
+        });
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,12 +116,6 @@ public class ProductSpecSelectorPopWin extends PopupWindow {
                     }
                 });
                 builder.create().show();
-            }
-        });
-        popupWindowClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
             }
         });
 
@@ -150,6 +161,12 @@ public class ProductSpecSelectorPopWin extends PopupWindow {
                         }
                         productSpecValueName.setBackgroundResource(R.drawable.corners_noborder_bg_activity);
                         productSpecValueName.setTextColor(ContextCompat.getColor(context, R.color.white_ff));
+                        for(ProductImage productImage: product.getGoods_img()){
+                            if(productSpecValueName.getText().toString().equals(productImage.getTitle())){
+                                Uri uri = Uri.parse(token.getRootUrl() + productImage.getUrl());
+                                productThumb.setImageURI(uri);
+                            }
+                        }
                     }
                 });
                 specWarpLinearLayout.addView(productSpecValueName);
