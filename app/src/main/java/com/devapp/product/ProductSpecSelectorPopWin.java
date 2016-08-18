@@ -1,13 +1,17 @@
 package com.devapp.product;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -40,6 +44,11 @@ public class ProductSpecSelectorPopWin extends PopupWindow {
     private TextView productOrgPrice;
     private TextView productTitleDescription;
     private LinearLayout productSpecContainer;
+    private RelativeLayout popupWindowContainer;
+    private ImageView popupWindowClose;
+    private ImageButton addButton;
+    private ImageButton reduceButon;
+    private TextView editNum;
 
     public ProductSpecSelectorPopWin(Context mContext, Product product) {
         this.context = mContext;
@@ -53,6 +62,63 @@ public class ProductSpecSelectorPopWin extends PopupWindow {
         productOrgPrice = (TextView) view.findViewById(R.id.product_org_price);
         productTitleDescription = (TextView) view.findViewById(R.id.product_title_desc);
         productSpecContainer = (LinearLayout) view.findViewById(R.id.product_spec_container);
+        popupWindowContainer = (RelativeLayout) view.findViewById(R.id.pop_container);
+        popupWindowClose = (ImageView) view.findViewById(R.id.pop_colose);
+        addButton = (ImageButton) view.findViewById(R.id.cart_item_add);
+        reduceButon = (ImageButton) view.findViewById(R.id.cart_item_reduce);
+        editNum = (TextView) view.findViewById(R.id.cart_item_num);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int buyQty = Integer.parseInt(editNum.getText().toString());
+                editNum.setText((buyQty + 1) + "");
+            }
+        });
+        reduceButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int buyQty = Integer.parseInt(editNum.getText().toString());
+                if(buyQty > 1){
+                    editNum.setText((buyQty - 1) + "");
+                }
+            }
+        });
+        editNum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProductBuyNumEditDialog.Builder builder = new ProductBuyNumEditDialog.Builder(context, Integer.parseInt(editNum.getText().toString()), editNum);
+                builder.setPositiveButton(new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton(new android.content.DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.create().show();
+            }
+        });
+        popupWindowClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
+
+        popupWindowContainer.setFocusable(true);
+        popupWindowContainer.setFocusableInTouchMode(true);
+        popupWindowContainer.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_BACK){
+                    dismiss();
+                }
+                return false;
+            }
+        });
 
         for(ProductSpec productSpec: product.getSpecs()){
             TextView productSpecTitle = new TextView(context);

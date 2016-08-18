@@ -17,6 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="110dp">
             <TextView
+                android:paddingTop="3dp"
+                android:paddingRight="20dp"
                 android:textColor="@color/black_3c"
                 android:maxLines="2"
                 android:id="@+id/pop_product_name"
@@ -80,7 +82,52 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </LinearLayout>
-
+                <RelativeLayout
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="购买数量"
+                        android:textSize="16.5sp"
+                        android:textColor="@color/black_3c"
+                        android:gravity="center_vertical"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                    <RelativeLayout
+                        android:id="@+id/car_item_num_edit_container"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageButton
+                            android:layout_alignParentLeft="true"
+                            android:id="@+id/cart_item_reduce"
+                            android:background="@drawable/reduce_button"
+                            android:layout_width="37dp"
+                            android:layout_height="30dp" />
+                        <TextView
+                            android:layout_toRightOf="@id/cart_item_reduce"
+                            android:textColor="@color/black_3c"
+                            android:gravity="center"
+                            android:id="@+id/cart_item_num"
+                            android:background="@drawable/text_edit"
+                            android:layout_width="52dp"
+                            android:layout_height="30dp"
+                            android:singleLine="true"
+                            android:text="1"
+                            android:maxLength="4" />
+                        <ImageButton
+                            android:layout_toRightOf="@id/cart_item_num"
+                            android:id="@+id/cart_item_add"
+                            android:background="@drawable/add_button"
+                            android:layout_width="37dp"
+                            android:layout_height="30dp" />
+                    </RelativeLayout>
+                </RelativeLayout>
             </LinearLayout>
         </ScrollView>
         <com.facebook.drawee.view.SimpleDraweeView
@@ -89,9 +136,18 @@
             android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="120dp" />
+        <ImageView
+            android:id="@+id/pop_colose"
+            android:src="@mipmap/colse"
+            android:layout_marginTop="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
     </RelativeLayout>
     <TextView
         android:text="加入购物车"
+        android:textSize="18sp"
         android:layout_below="@id/pop_product_info"
         android:textColor="@color/white_ff"
         android:background="@color/activityColor"
