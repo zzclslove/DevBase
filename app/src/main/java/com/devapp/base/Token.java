@@ -20,6 +20,8 @@ public class Token extends Application implements Serializable {
     private double productImageScale;   //产品相关图片宽高比
     private InitData initData;
     private ViewPager loginStepViewPager;
+    private String phoneNumber;
+    private int sendCodeTimeLeft;
 
     @Override
     public void onCreate()
@@ -97,5 +99,21 @@ public class Token extends Application implements Serializable {
 
     public void setLoginStepViewPager(ViewPager loginStepViewPager) {
         this.loginStepViewPager = loginStepViewPager;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getSendCodeTimeLeft() {
+        return sendCodeTimeLeft;
+    }
+
+    public void setSendCodeTimeLeft(int sendCodeTimeLeft) {
+        this.sendCodeTimeLeft = sendCodeTimeLeft;
     }
 }

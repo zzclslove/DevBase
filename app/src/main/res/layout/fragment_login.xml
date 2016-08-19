@@ -17,7 +17,8 @@
         <TextView
             android:text="登陆"
             android:textColor="@color/black_3c"
-            android:textSize="20sp"
+            android:paddingTop="4dp"
+            android:textSize="18sp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="40dp" />

@@ -40,7 +40,7 @@ public class ProductDataSource implements IDataSource<List<Product>> {
 
     private List<Product> loadProducts(final int currentPage, Map<String, String> condition, Token token) throws Exception {
 
-        String url = token.getRootUrl() + "api/goods.php?action=get_goods_list&page=" + currentPage;
+        String url = token.getRootUrl() + "mobileapi/goods.php?action=get_goods_list&page=" + currentPage;
         for (String k : condition.keySet())
         {
             url += "&" + k + "=" + condition.get(k);

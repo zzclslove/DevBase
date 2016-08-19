@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.devapp.R;
 import com.devapp.base.SpecWarpLinearLayout;
@@ -78,7 +77,6 @@ public class ProductSpecSelectorPopWin extends PopupWindow {
             @Override
             public void onClick(View view) {
                 if(!token.isLogined()){
-                    Toast.makeText(context, "1111", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(context, LoginActivity.class);
                     context.startActivity(i);
                     dismiss();

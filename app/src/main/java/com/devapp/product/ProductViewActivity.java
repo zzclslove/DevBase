@@ -69,7 +69,7 @@ public class ProductViewActivity extends FragmentActivity {
 
         Intent intent = getIntent();
         int pid = intent.getIntExtra("pid", 0);
-        String url = token.getRootUrl() + "api/goods.php?action=get_goods_info";
+        String url = token.getRootUrl() + "mobileapi/goods.php?action=get_goods_info";
 
         productViewDataLoaderHelper = new TaskHelper<Product, String>();
         productViewDataLoaderHelper.setTask(new GetProductDataTask(url, pid));

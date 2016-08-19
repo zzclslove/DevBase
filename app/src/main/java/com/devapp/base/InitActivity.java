@@ -14,6 +14,7 @@ import com.devapp.model.Cart;
 import com.devapp.model.CartProduct;
 import com.devapp.data.InitData;
 import com.devapp.data.ResultData;
+import com.devapp.user.LoginActivity;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -51,6 +52,7 @@ public class InitActivity extends Activity {
         wm.getDefaultDisplay().getSize(autoSize);
         token.setWindowWidth(autoSize.x);
         token.setWindowHeight(autoSize.y);
+        token.setSendCodeTimeLeft(0);
 
         final InitData initData = new InitData();
         token.setInitData(initData);
@@ -88,7 +90,7 @@ public class InitActivity extends Activity {
         cart.setCartProducts(cartProductList);
         token.getInitData().setCart(cart);
 
-        String url = token.getRootUrl() + "api/index.php?action=get_init_data";
+        String url = token.getRootUrl() + "mobileapi/index.php?action=get_init_data";
         Request request = new Request.Builder().url(url).build();
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);
@@ -133,7 +135,7 @@ public class InitActivity extends Activity {
                     token.getInitData().setTopicList(initDataRes.getTopicList());
                     token.setProductImageScale(initDataRes.getProductImageWidth()/initDataRes.getProductImageHeight());
                     token.setLogined(initDataRes.isLogined());
-                    Intent i = new Intent(self, MainActivity.class);
+                    Intent i = new Intent(self, LoginActivity.class);
                     startActivity(i);
                     self.finish();
                 }
